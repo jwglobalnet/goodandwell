@@ -21,8 +21,14 @@ const news = (await getCollection('news', (n) => n.data.lang === newsLang(lang))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// Set to a file in /public (e.g. "/media/factory.mp4") when the factory video arrives.
-const heroVideo: string | null = null;
+// Background video in /public/media. TEST: a free stock clip (sushi rolling) to try the effect;
+// replace with the company's own factory footage before launch, or set to null for the photo.
+const heroVideo: { mp4: string; webm?: string; poster: string; test?: boolean } | null = {
+  mp4: '/media/hero-sushi-test.mp4',
+  webm: '/media/hero-sushi-test.webm',
+  poster: '/media/hero-sushi-test-poster.jpg',
+  test: true,
+};
 // Set to a file in /public when the new catalog PDF is ready. The 2017 catalog is not used
 // (it contains health-effect copy and certification claims that are not confirmed).
 const catalogPdf: string | null = null;
@@ -39,8 +45,9 @@ const factoryPhotos = [
   <section class="relative isolate overflow-hidden bg-ink text-white" aria-labelledby="hero-title">
     <div class="absolute inset-0 -z-10">
       {heroVideo ? (
-        <video class="h-full w-full object-cover opacity-35" autoplay muted loop playsinline preload="metadata" aria-hidden="true" data-hero-video>
-          <source src={heroVideo} type="video/mp4" />
+        <video class="h-full w-full object-cover opacity-[0.22]" autoplay muted loop playsinline preload="auto" poster={heroVideo.poster} aria-hidden="true" data-hero-video>
+          {heroVideo.webm && <source src={heroVideo.webm} type="video/webm" />}
+          <source src={heroVideo.mp4} type="video/mp4" />
         </video>
       ) : (
         <Photo name="roasted-sheets.jpg" alt="" class="opacity-25" loading="eager" widths={[800, 1600]} sizes="100vw" />
@@ -58,8 +65,14 @@ const factoryPhotos = [
           <span class="btn btn-on-dark" aria-disabled="true">{s.hero.ctaCatalog} <Text text={s.hero.catalogPending} /></span>
         )}
       </div>
-      {!heroVideo && <p class="mt-10 text-xs"><Text text={s.hero.videoPending} /></p>}
+      {(!heroVideo || heroVideo.test) && <p class="mt-10 text-xs"><Text text={heroVideo?.test ? '[확인 필요: 테스트용 무료 영상 — 실제 공장 영상으로 교체]' : s.hero.videoPending} /></p>}
     </div>
+    {heroVideo && (
+      <button type="button" class="absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full border border-white/40 text-white hover:bg-white/10" data-video-toggle aria-pressed="false" aria-label="Pause background video">
+        <svg class="size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-icon-pause><rect x="3" y="2" width="3.5" height="12" rx="1" /><rect x="9.5" y="2" width="3.5" height="12" rx="1" /></svg>
+        <svg class="hidden size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-icon-play><path d="M4 2.5v11l9.5-5.5z" /></svg>
+      </button>
+    )}
   </section>
 
   <!-- Numbers -->
@@ -184,7 +197,19 @@ const factoryPhotos = [
 </Base>
 
 <script>
-  // Respect reduced-motion for the background video.
+  // Background video: pause/play button, and start paused for reduced-motion users.
   const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
-  if (v && matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause();
+  const btn = document.querySelector<HTMLButtonElement>('[data-video-toggle]');
+  const sync = () => {
+    if (!v || !btn) return;
+    btn.setAttribute('aria-pressed', String(v.paused));
+    btn.setAttribute('aria-label', v.paused ? 'Play background video' : 'Pause background video');
+    btn.querySelector('[data-icon-pause]')?.classList.toggle('hidden', v.paused);
+    btn.querySelector('[data-icon-play]')?.classList.toggle('hidden', !v.paused);
+  };
+  if (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+    v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
+    btn?.addEventListener('click', () => (v.paused ? v.play() : v.pause()));
+  }
 </script>
