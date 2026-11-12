@@ -1,0 +1,100 @@
+---
+import Text from './Text.astro';
+import { t, company, type Lang } from '../i18n/ui';
+import { getActiveProducts } from '../lib/products';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const f = t(lang).contact.form;
+const key = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+const ready = key.trim().length > 0;
+const products = await getActiveProducts();
+const field = 'mt-1.5 block w-full min-h-11 rounded-md border border-line bg-card px-3 py-2.5 text-base text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30';
+const label = 'block text-sm font-semibold text-ink';
+---
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="grid gap-5 rounded-lg border border-line bg-card p-5 sm:grid-cols-2 sm:p-8"
+  data-contact-form
+  data-msg-sending={f.sending}
+  data-msg-success={f.success}
+  data-msg-error={f.error}
+>
+  <input type="hidden" name="access_key" value={key} />
+  <input type="hidden" name="subject" value={f.subject} />
+  <input type="hidden" name="from_name" value="Good&Well website" />
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div>
+    <label for={`name-${lang}`} class={label}>{f.name}</label>
+    <input id={`name-${lang}`} name="name" required autocomplete="name" class={field} />
+  </div>
+  <div>
+    <label for={`company-${lang}`} class={label}>{f.company}</label>
+    <input id={`company-${lang}`} name="company" required autocomplete="organization" class={field} />
+  </div>
+  <div>
+    <label for={`email-${lang}`} class={label}>{f.email}</label>
+    <input id={`email-${lang}`} name="email" type="email" required autocomplete="email" class={field} />
+  </div>
+  <div>
+    <label for={`country-${lang}`} class={label}>{f.country}</label>
+    <input id={`country-${lang}`} name="country" autocomplete="country-name" class={field} />
+  </div>
+  <div class="sm:col-span-2">
+    <label for={`product-${lang}`} class={label}>{f.product}</label>
+    <select id={`product-${lang}`} name="product" class={field} data-product-select>
+      <option value="">{f.productAny}</option>
+      {products.map((p) => <option value={p.data.id}>{p.data.name[lang]}</option>)}
+      <option value="oem">{f.oem}</option>
+    </select>
+  </div>
+  <div class="sm:col-span-2">
+    <label for={`message-${lang}`} class={label}>{f.message}</label>
+    <textarea id={`message-${lang}`} name="message" rows="5" required placeholder={f.messageHint} class={field}></textarea>
+  </div>
+  <div class="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
+    <button type="submit" class="btn btn-primary shrink-0 whitespace-nowrap" disabled={!ready}>{f.submit}</button>
+    {!ready && (
+      <p class="text-sm">
+        <Text text={f.notReady} />{' '}
+        <a class="font-semibold text-brand" href={`mailto:${company.contactEmail}`}>{company.contactEmail}</a>
+      </p>
+    )}
+    <p class="text-sm" role="status" aria-live="polite" data-form-status></p>
+  </div>
+</form>
+
+<script>
+  // Prefill the product from ?product=<id> (used by "Request a sample" buttons).
+  const wanted = new URLSearchParams(location.search).get('product');
+  document.querySelectorAll<HTMLSelectElement>('[data-product-select]').forEach((sel) => {
+    if (wanted && [...sel.options].some((o) => o.value === wanted)) sel.value = wanted;
+  });
+
+  // Submit without leaving the page; falls back to a normal POST when JS is off.
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      button.disabled = true;
+      status.textContent = form.dataset.msgSending ?? '';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === false) throw new Error(json.message);
+        form.reset();
+        status.textContent = form.dataset.msgSuccess ?? '';
+      } catch {
+        status.textContent = form.dataset.msgError ?? '';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,88 @@
+---
+import { languages, langs, t, localize, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; path: string }
+const { lang, path } = Astro.props;
+const s = t(lang);
+const home = localize(lang);
+// Factory, OEM, News and Contact point to Home sections until their own pages are built.
+const items = [
+  { href: localize(lang, 'products/'), label: s.nav.products, key: 'products' },
+  { href: `${home}#factory`, label: s.nav.factory, key: 'factory' },
+  { href: `${home}#oem`, label: s.nav.oem, key: 'oem' },
+  { href: `${home}#news`, label: s.nav.news, key: 'news' },
+];
+const current = path.startsWith('products') ? 'products' : '';
+const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO' };
+---
+<header class="sticky top-0 z-40 border-b border-line bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/85">
+  <div class="container-x flex h-16 items-center justify-between gap-4">
+    <a href={home} class="flex min-h-11 items-center font-display text-xl font-bold tracking-tight text-ink no-underline" aria-label="Good&Well home">
+      Good<span class="text-brand">&amp;</span>Well
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      {items.map((i) => (
+        <a
+          href={i.href}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded px-3 text-[0.9375rem] font-medium no-underline hover:text-brand',
+            current === i.key ? 'text-brand' : 'text-ink',
+          ]}
+          aria-current={current === i.key ? 'page' : undefined}
+        >{i.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <ul class="hidden items-center sm:flex" aria-label={s.nav.language}>
+        {langs.map((l) => (
+          <li>
+            <a
+              href={localize(l, path)}
+              hreflang={l}
+              lang={l}
+              title={languages[l]}
+              class:list={[
+                'inline-flex min-h-11 min-w-11 items-center justify-center rounded text-sm font-semibold no-underline',
+                l === lang ? 'text-brand underline decoration-2 underline-offset-4' : 'text-muted hover:text-ink',
+              ]}
+              aria-current={l === lang ? 'true' : undefined}
+            >{langLabel[l]}</a>
+          </li>
+        ))}
+      </ul>
+      <a href={`${home}#contact`} class="btn btn-primary hidden md:inline-flex">{s.nav.contact}</a>
+
+      <details class="group relative lg:hidden">
+        <summary class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded border border-line px-3 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+          <span>{s.nav.menu}</span>
+          <svg class="size-4 transition-transform group-open:rotate-180" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+        </summary>
+        <div class="absolute right-0 mt-2 w-[min(18rem,calc(100vw-2rem))] rounded-md border border-line bg-card p-2 shadow-lg">
+          <nav aria-label="Main mobile">
+            <ul>
+              {[...items, { href: `${home}#contact`, label: s.nav.contact, key: 'contact' }].map((i) => (
+                <li><a href={i.href} class="flex min-h-11 items-center rounded px-3 font-medium no-underline hover:bg-paper">{i.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+          <ul class="mt-2 flex border-t border-line pt-2 sm:hidden" aria-label={s.nav.language}>
+            {langs.map((l) => (
+              <li class="flex-1">
+                <a href={localize(l, path)} hreflang={l} lang={l}
+                  class:list={['flex min-h-11 items-center justify-center rounded text-sm font-semibold no-underline', l === lang ? 'bg-paper text-brand' : 'text-muted']}
+                  aria-current={l === lang ? 'true' : undefined}>{languages[l]}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  // Close the mobile menu after choosing a link (anchor links stay on the same page).
+  document.querySelectorAll('header details a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
+  );
+</script>

@@ -1,0 +1,187 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Text from '../../components/Text.astro';
+import Photo from '../../components/Photo.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { langs, t, localize, formatDate, company, type Lang } from '../../i18n/ui';
+import { getActiveProducts } from '../../lib/products';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const products = await getActiveProducts();
+const news = (await getCollection('news', (n) => n.data.lang === lang))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+// Set to a file in /public (e.g. "/media/factory.mp4") when the factory video arrives.
+const heroVideo: string | null = null;
+// Set to a file in /public when the new catalog PDF is ready. The 2017 catalog is not used
+// (it contains health-effect copy and certification claims that are not confirmed).
+const catalogPdf: string | null = null;
+
+const factoryPhotos = [
+  { file: 'process-03-sorting.jpg', label: s.factory.steps.sorting },
+  { file: 'process-04-roasting.jpg', label: s.factory.steps.roasting },
+  { file: 'process-07-cutting.jpg', label: s.factory.steps.cutting },
+  { file: 'process-08-inner-pack.jpg', label: s.factory.steps.innerPack },
+];
+---
+<Base lang={lang} title={s.meta.home} description={s.meta.homeDescription}>
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-ink text-white" aria-labelledby="hero-title">
+    <div class="absolute inset-0 -z-10">
+      {heroVideo ? (
+        <video class="h-full w-full object-cover opacity-35" autoplay muted loop playsinline preload="metadata" aria-hidden="true" data-hero-video>
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      ) : (
+        <Photo name="roasted-sheets.jpg" alt="" class="opacity-25" loading="eager" widths={[800, 1600]} sizes="100vw" />
+      )}
+    </div>
+    <div class="container-x py-20 sm:py-28 lg:py-32">
+      <p class="eyebrow !text-ink-accent">{s.hero.eyebrow}</p>
+      <h1 id="hero-title" class="mt-4 max-w-3xl text-3xl font-bold leading-[1.15] sm:text-4xl lg:text-5xl">{s.hero.title}</h1>
+      <p class="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">{s.hero.lead}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <a href="#contact" class="btn btn-primary">{s.hero.ctaSample}</a>
+        {catalogPdf ? (
+          <a href={catalogPdf} class="btn btn-on-dark" download>{s.hero.ctaCatalog}</a>
+        ) : (
+          <span class="btn btn-on-dark" aria-disabled="true">{s.hero.ctaCatalog} <Text text={s.hero.catalogPending} /></span>
+        )}
+      </div>
+      {!heroVideo && <p class="mt-10 text-xs"><Text text={s.hero.videoPending} /></p>}
+    </div>
+  </section>
+
+  <!-- Numbers -->
+  <section class="border-b border-line bg-card" aria-label="Key figures">
+    <dl class="container-x grid grid-cols-2 divide-line lg:grid-cols-4 lg:divide-x">
+      {s.stats.map((item, i) => (
+        <div class:list={['flex flex-col-reverse gap-1 py-6 lg:px-6', i % 2 === 1 && 'pl-4 border-l border-line lg:border-l-0', i < 2 && 'border-b border-line lg:border-b-0', i === 0 && 'lg:pl-0']}>
+          <dt class="text-sm text-muted">{item.label}</dt>
+          <dd class="font-display text-xl font-bold text-ink sm:text-2xl"><Text text={item.value} /></dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="py-16 sm:py-24" aria-labelledby="products-title">
+    <div class="container-x">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <SectionHead id="products-title" eyebrow={s.productsSection.eyebrow} title={s.productsSection.title} lead={s.productsSection.lead} />
+        <a href={localize(lang, 'products/')} class="btn btn-outline shrink-0">{s.productsSection.viewAll}</a>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((p) => <ProductCard lang={lang} product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Factory & Quality -->
+  <section id="factory" class="border-y border-line bg-card py-16 sm:py-24" aria-labelledby="factory-title">
+    <div class="container-x grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <SectionHead id="factory-title" eyebrow={s.factory.eyebrow} title={s.factory.title} lead={s.factory.lead} />
+        <dl class="mt-8 border-t border-line pt-5">
+          <dt class="text-sm font-semibold">{s.factory.certTitle}</dt>
+          <dd class="mt-1 text-sm text-muted"><Text text={s.factory.certValue} /></dd>
+        </dl>
+      </div>
+      <ul class="grid grid-cols-2 gap-4">
+        {factoryPhotos.map((p) => (
+          <li>
+            <figure>
+              <div class="aspect-[4/3] overflow-hidden rounded-md">
+                <Photo name={p.file} alt={p.label} sizes="(min-width: 1024px) 28vw, 50vw" />
+              </div>
+              <figcaption class="mt-2 text-sm font-medium">{p.label}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- OEM -->
+  <section id="oem" class="bg-ink py-16 text-white sm:py-24" aria-labelledby="oem-title">
+    <div class="container-x">
+      <SectionHead id="oem-title" dark eyebrow={s.oem.eyebrow} title={s.oem.title} lead={s.oem.lead} />
+      <ol class="mt-10 grid gap-px overflow-hidden rounded-lg border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-5">
+        {s.oem.steps.map((step, i) => (
+          <li class="bg-ink p-6">
+            <p class="font-display text-sm font-semibold text-ink-accent">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="mt-2 text-lg font-bold">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-muted">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+      <dl class="mt-8 grid gap-4 text-sm sm:grid-cols-2 lg:max-w-2xl">
+        <div><dt class="text-ink-muted">{s.oem.moqLabel}</dt><dd class="mt-1 font-semibold"><Text text={s.oem.moqValue} /></dd></div>
+        <div><dt class="text-ink-muted">{s.oem.leadLabel}</dt><dd class="mt-1 font-semibold"><Text text={s.oem.leadValue} /></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- News -->
+  <section id="news" class="py-16 sm:py-24" aria-labelledby="news-title">
+    <div class="container-x">
+      <SectionHead id="news-title" eyebrow={s.news.eyebrow} title={s.news.title} />
+      {news.length === 0 ? (
+        <p class="mt-8 text-muted">{s.news.empty}</p>
+      ) : (
+        <ul class="mt-8 grid gap-5 md:grid-cols-3">
+          {news.map((n) => (
+            <li class="rounded-lg border border-line bg-card p-6">
+              <time datetime={n.data.date.toISOString().slice(0, 10)} class="text-sm text-muted">{formatDate(n.data.date, lang)}</time>
+              <h3 class="mt-2 text-lg font-bold leading-snug">{n.data.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{n.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="border-t border-line bg-card py-16 sm:py-24" aria-labelledby="contact-title">
+    <div class="container-x grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+      <div>
+        <SectionHead id="contact-title" eyebrow={s.contact.eyebrow} title={s.contact.title} lead={s.contact.lead} />
+        <div class="mt-8 space-y-6 border-t border-line pt-6 text-sm leading-relaxed">
+          <div>
+            <p class="font-semibold">{s.contact.person.title}</p>
+            <p class="mt-1">{s.contact.person.name}, {s.contact.person.role}</p>
+            <p class="text-muted">
+              {s.contact.email}: <a class="font-medium text-brand" href={`mailto:${company.contactEmail}`}>{company.contactEmail}</a><br />
+              {s.contact.mobile}: <a class="text-ink" href={`tel:${company.contactMobile.replace(/-/g, '')}`}>{company.contactMobile}</a>
+            </p>
+          </div>
+          <div>
+            <p class="font-semibold">{s.contact.office.title}</p>
+            <p class="mt-1">{s.contact.office.company}</p>
+            <p class="text-muted">
+              {lang === 'ko' ? company.addressKo : company.address}<br />
+              {s.contact.tel}: {company.tel} · {s.contact.fax}: {company.fax}
+            </p>
+          </div>
+        </div>
+      </div>
+      <ContactForm lang={lang} />
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Respect reduced-motion for the background video.
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (v && matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause();
+</script>

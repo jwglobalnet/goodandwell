@@ -1,0 +1,11 @@
+---
+import Text from './Text.astro';
+interface Props { eyebrow?: string; title: string; lead?: string; dark?: boolean; id?: string }
+const { eyebrow, title, lead, dark = false, id } = Astro.props;
+---
+<div class="max-w-2xl">
+  {eyebrow && <p class:list={['eyebrow', dark && '!text-ink-accent']}>{eyebrow}</p>}
+  <h2 id={id} class:list={['mt-2 text-2xl font-bold leading-tight sm:text-3xl', dark ? 'text-white' : 'text-ink']}>{title}</h2>
+  {lead && <p class:list={['mt-3 text-base leading-relaxed', dark ? 'text-ink-muted' : 'text-muted']}><Text text={lead} /></p>}
+  <slot />
+</div>

@@ -1,0 +1,3 @@
+# Test period: keep every page out of search engines. Remove at launch.
+/*
+  X-Robots-Tag: noindex, nofollow

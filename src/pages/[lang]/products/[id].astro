@@ -1,0 +1,168 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Photo from '../../../components/Photo.astro';
+import Text from '../../../components/Text.astro';
+import SpecTable from '../../../components/SpecTable.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { langs, t, localize, type Lang } from '../../../i18n/ui';
+import { getActiveProducts } from '../../../lib/products';
+
+export async function getStaticPaths() {
+  const products = await getActiveProducts();
+  return langs.flatMap((lang) => products.map((product) => ({ params: { lang, id: product.data.id }, props: { product } })));
+}
+
+const { product } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const p = s.productPage;
+const d = product.data;
+const isRoasted = d.id === 'roasted-seaweed';
+const images = d.images ?? [];
+const [mainImage, ...moreImages] = images;
+const others = (await getActiveProducts()).filter((o) => o.data.id !== d.id);
+const sampleHref = `${localize(lang)}?product=${d.id}#contact`;
+const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d.name[lang];
+---
+<Base lang={lang} title={`${d.name[lang]} | Good&Well`} description={d.tagline?.[lang] ?? d.name[lang]} path={`products/${d.id}/`}>
+  <nav aria-label="Breadcrumb" class="border-b border-line bg-card">
+    <ol class="container-x flex flex-wrap items-center gap-x-2 py-3 text-sm text-muted">
+      <li><a href={localize(lang)} class="inline-flex min-h-11 items-center hover:text-brand">Good&amp;Well</a></li>
+      <li aria-hidden="true">/</li>
+      <li><a href={localize(lang, 'products/')} class="inline-flex min-h-11 items-center hover:text-brand">{p.breadcrumb}</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" class="text-ink">{d.name[lang]}</li>
+    </ol>
+  </nav>
+
+  <!-- Summary -->
+  <section class="bg-card">
+    <div class="container-x grid gap-8 py-10 sm:py-14 lg:grid-cols-2 lg:gap-14">
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        <div class="aspect-[8/7] overflow-hidden rounded-lg">
+          <Photo name={mainImage} alt={mainImage ? alt(mainImage) : d.name[lang]} pending={p.photoPending} loading="eager" widths={[600, 1200]} sizes="(min-width: 1024px) 50vw, 100vw" />
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Good&amp;Well</p>
+        <h1 class="mt-2 text-3xl font-bold leading-tight sm:text-4xl">{d.name[lang]}</h1>
+        {d.tagline && <p class="mt-4 text-lg leading-relaxed text-ink"><Text text={d.tagline[lang]} /></p>}
+        {d.description && <p class="mt-4 leading-relaxed text-muted"><Text text={d.description[lang]} /></p>}
+
+        {isRoasted && (
+          <ul class="mt-6 space-y-2 border-t border-line pt-6">
+            {s.roasted.features.map((f) => (
+              <li class="flex gap-3 leading-relaxed">
+                <svg class="mt-1 size-4 shrink-0 text-brand" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                <span><Text text={f} /></span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <dl class="mt-6 grid gap-4 border-t border-line pt-6 text-sm sm:grid-cols-2">
+          {isRoasted && (
+            <div>
+              <dt class="font-semibold">{s.roasted.uses}</dt>
+              <dd class="mt-1 text-muted">{s.roasted.usesList.join(' · ')}</dd>
+            </div>
+          )}
+          {d.flavours && (
+            <div>
+              <dt class="font-semibold">{p.flavours}</dt>
+              <dd class="mt-1 text-muted">{d.flavours.map((f) => s.flavours[f] ?? f).join(' · ')}</dd>
+            </div>
+          )}
+          {d.markets && (
+            <div>
+              <dt class="font-semibold">{p.markets}</dt>
+              <dd class="mt-1 text-muted"><Text text={d.markets[lang]} /></dd>
+            </div>
+          )}
+        </dl>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href={sampleHref} class="btn btn-primary">{p.requestSample}</a>
+          {d.specSheet ? (
+            <a href={d.specSheet} class="btn btn-outline" download>{p.specSheet}</a>
+          ) : (
+            <span class="btn btn-outline" aria-disabled="true">{p.specSheet} <Text text={p.specSheetPending} /></span>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications -->
+  <section class="border-t border-line py-12 sm:py-16" aria-labelledby="spec-title">
+    <div class="container-x">
+      <h2 id="spec-title" class="text-2xl font-bold">{p.specTitle}</h2>
+      {isRoasted && (
+        <dl class="mt-6 grid overflow-hidden rounded-lg border border-line bg-card sm:grid-cols-2 lg:grid-cols-3">
+          {s.roasted.overview.map((row) => (
+            <div class="border-b border-line p-4 sm:border-r">
+              <dt class="text-sm text-muted">{row.k}</dt>
+              <dd class="mt-1 font-medium"><Text text={row.v} /></dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {d.variants && (
+        <div class="mt-6">
+          <SpecTable lang={lang} variants={d.variants} />
+          <p class="mt-3 text-sm text-muted">{p.specNote}</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  {moreImages.length > 0 && (
+    <section class="border-t border-line bg-card py-12 sm:py-16" aria-labelledby="gallery-title">
+      <div class="container-x">
+        <h2 id="gallery-title" class="text-2xl font-bold">{p.gallery}</h2>
+        <ul class="mt-6 grid gap-5 md:grid-cols-2">
+          {moreImages.map((file) => {
+            const wide = file === 'roasted-packs.jpg';
+            return (
+              <li class:list={[wide && 'md:col-span-2']}>
+                <figure>
+                  <div class:list={['overflow-hidden rounded-lg', wide ? 'bg-card' : 'aspect-[3/2]']}>
+                    <Photo name={file} alt={alt(file)} fit={wide ? 'contain' : 'cover'} widths={wide ? [800, 1340] : [500, 944]} sizes={wide ? '(min-width: 1216px) 1168px, 100vw' : '(min-width: 768px) 50vw, 100vw'} />
+                  </div>
+                  {wide && isRoasted && <figcaption class="mt-2 text-sm text-muted"><Text text={s.roasted.packsCaption} /></figcaption>}
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="bg-ink py-12 text-white sm:py-16">
+    <div class="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-bold">{s.contact.title}</h2>
+        <p class="mt-2 text-ink-muted">{s.contact.lead}</p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <a href={sampleHref} class="btn btn-primary">{p.requestSample}</a>
+        <a href={sampleHref} class="btn btn-on-dark">{p.askQuote}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other products -->
+  {others.length > 0 && (
+    <section class="py-12 sm:py-16" aria-labelledby="others-title">
+      <div class="container-x">
+        <h2 id="others-title" class="text-2xl font-bold">{p.otherProducts}</h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {others.map((o) => <ProductCard lang={lang} product={o} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>
