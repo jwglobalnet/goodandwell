@@ -23,6 +23,14 @@
   --font-sans: "Noto Sans JP Variable", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   --font-display: "Space Grotesk Variable", "Noto Sans JP Variable", system-ui, sans-serif;
 }
+:root:lang(zh) {
+  --font-sans: "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Noto Sans SC Variable", system-ui, sans-serif;
+}
+:root:lang(zh-Hant) {
+  --font-sans: "Noto Sans TC Variable", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Noto Sans TC Variable", system-ui, sans-serif;
+}
 :root:lang(ko) {
   --font-sans: "Noto Sans KR Variable", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-display: "Space Grotesk Variable", "Noto Sans KR Variable", system-ui, sans-serif;
@@ -37,8 +45,9 @@
     scroll-padding-top: 5rem;
   }
   :lang(ja) body, :lang(ko) body { word-break: keep-all; overflow-wrap: anywhere; line-break: strict; }
+  :lang(zh) body { line-break: strict; overflow-wrap: anywhere; }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; text-wrap: balance; }
-  :lang(ja) :is(h1, h2, h3, h4), :lang(ko) :is(h1, h2, h3, h4) { letter-spacing: 0; }
+  :lang(ja) :is(h1, h2, h3, h4), :lang(ko) :is(h1, h2, h3, h4), :lang(zh) :is(h1, h2, h3, h4) { letter-spacing: 0; }
   a { color: inherit; }
   :focus-visible { outline: 3px solid var(--color-brand); outline-offset: 2px; }
   @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
@@ -63,7 +72,7 @@
   .btn[aria-disabled="true"], .btn:disabled { cursor: not-allowed; opacity: .75; }
 
   .eyebrow { font-size: .8125rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--color-brand); }
-  :lang(ja) .eyebrow, :lang(ko) .eyebrow { letter-spacing: .02em; }
+  :lang(ja) .eyebrow, :lang(ko) .eyebrow, :lang(zh) .eyebrow { letter-spacing: .02em; }
 
   /* Placeholder for values not yet confirmed. Deliberately loud so nothing ships unnoticed. */
   .ph {

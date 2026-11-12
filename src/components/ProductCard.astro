@@ -1,7 +1,7 @@
 ---
 import Photo from './Photo.astro';
 import Text from './Text.astro';
-import { t, localize, type Lang } from '../i18n/ui';
+import { t, localize, type Lang, loc } from '../i18n/ui';
 import type { CollectionEntry } from 'astro:content';
 interface Props { lang: Lang; product: CollectionEntry<'products'> }
 const { lang, product } = Astro.props;
@@ -11,13 +11,13 @@ const href = localize(lang, `products/${d.id}/`);
 ---
 <article class="group relative flex flex-col overflow-hidden rounded-lg border border-line bg-card">
   <div class="aspect-[4/3] overflow-hidden">
-    <Photo name={d.images?.[0]} alt={d.name[lang]} pending={s.productPage.photoPending} />
+    <Photo name={d.images?.[0]} alt={loc(d.name, lang)} pending={s.productPage.photoPending} />
   </div>
   <div class="flex flex-1 flex-col p-5">
     <h3 class="text-lg font-bold leading-snug">
-      <a href={href} class="no-underline after:absolute after:inset-0 group-hover:text-brand">{d.name[lang]}</a>
+      <a href={href} class="no-underline after:absolute after:inset-0 group-hover:text-brand">{loc(d.name, lang)}</a>
     </h3>
-    {d.tagline && <p class="mt-2 text-sm leading-relaxed text-muted"><Text text={d.tagline[lang]} /></p>}
+    {d.tagline && <p class="mt-2 text-sm leading-relaxed text-muted"><Text text={loc(d.tagline, lang)} /></p>}
     <p class="mt-auto pt-4 text-sm font-semibold text-brand">{s.productsSection.details} <span aria-hidden="true">→</span></p>
   </div>
 </article>

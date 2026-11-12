@@ -1,5 +1,5 @@
 {
-  "_note": "설명은 2013·2017 카탈로그 내용을 바탕으로 다시 쓴 초안. specs의 null과 [확인 필요]는 채워야 하는 값. status가 verify인 품목은 현재 취급 여부 확인 전까지 사이트에 노출하지 않는다. variants[].label과 markets는 언어별 객체. 규격 필드: sheetSize, netWeight, perCarton(박스 입수), containerLoad(컨테이너 적재), shelfLife. null은 화면에 [확인 필요]로 표시된다.",
+  "_note": "설명·규격은 Product_Catalog_3.xlsx(최신 제품 카탈로그)와 2021 회사소개서를 우선으로, 2013·2017 카탈로그를 보조로 정리. status가 verify인 품목은 현재 취급 여부 확인 전까지 사이트에 노출하지 않는다. 텍스트 필드는 en/ja/ko/zh 객체. 규격 필드: sheetSize, netWeight, perCarton(박스 입수), containerLoad(컨테이너 적재), shelfLife. null과 [확인 필요]는 화면에 노란 표시로 나간다.",
   "products": [
     {
       "id": "roasted-seaweed",
@@ -14,60 +14,116 @@
       "name": {
         "en": "Roasted Seaweed (Yaki Nori)",
         "ja": "焼き海苔",
-        "ko": "구운김 (무조미)"
+        "ko": "구운김 (무조미)",
+        "zh": "烤紫菜（寿司海苔）",
+        "fr": "Nori grillée (Yaki nori)"
       },
       "tagline": {
-        "en": "Unseasoned. No oil, no salt. For sushi, hand rolls and gimbap.",
-        "ja": "油も塩も使わない、寿司・手巻き・キンパ用の焼き海苔です。",
-        "ko": "기름·소금 없이 구운 김. 스시, 핸드롤, 김밥용."
+        "en": "Unseasoned. Laver only — no oil, no salt. For sushi, hand rolls and gimbap.",
+        "ja": "原材料は海苔のみ。油も塩も使わない、寿司・手巻き・キンパ用の焼き海苔です。",
+        "ko": "원재료는 김뿐. 기름·소금 없이 구운 스시·핸드롤·김밥용 김.",
+        "zh": "原料只有紫菜，不加油、不加盐。适用于寿司、手卷和紫菜包饭。",
+        "fr": "Nature. Uniquement des algues, sans huile ni sel. Pour sushis, temaki et gimbap."
       },
       "description": {
-        "en": "Made from laver harvested on the southern coast of Korea and roasted in a high-temperature kiln for a crisp bite. Available as full sheets and half sheets, packed to the count you need.",
-        "ja": "韓国南海岸で採れた原藻を高温の窯でパリッと焼き上げました。全形・半切をご希望の枚数で包装いたします。",
-        "ko": "남해안 원초를 고온에서 바삭하게 구웠습니다. 전장과 반장을 원하는 매수로 포장합니다."
+        "en": "Made from laver harvested off Busan, Wando and Namhae on Korea's south coast, and roasted in a high-temperature far-infrared kiln for a crisp, even sheet. We pack full sheets to the count you need.",
+        "ja": "釜山・莞島・南海など韓国南海岸で採れた原藻を、遠赤外線の高温窯でパリッと均一に焼き上げました。全形をご希望の枚数で包装いたします。",
+        "ko": "부산·완도·남해 등 남해안 원초를 원적외선 고온 가마에서 고르고 바삭하게 구웠습니다. 전장을 원하는 매수로 포장합니다.",
+        "zh": "选用韩国南部海岸釜山、莞岛、南海一带采收的原藻，在远红外线高温窑中烤制，口感酥脆、均匀。全张规格可按需要的张数包装。",
+        "fr": "Fabriquée à partir d’algues récoltées au large de Busan, Wando et Namhae, sur la côte sud de la Corée, et grillée dans un four à infrarouge lointain à haute température pour une feuille croustillante et régulière. Nous conditionnons les feuilles entières au nombre souhaité."
       },
       "variants": [
         {
           "label": {
             "en": "Full sheet, 10 sheets",
             "ja": "全形 10枚",
-            "ko": "전장 10매"
+            "ko": "전장 10매",
+            "zh": "全张 10张",
+            "fr": "Feuille entière, 10 feuilles"
           },
           "sheetSize": "[확인 필요: 약 19×21cm]",
           "netWeight": null,
-          "perCarton": null,
-          "containerLoad": null,
-          "shelfLife": null
+          "perCarton": {
+            "en": "50 packs",
+            "ja": "50袋",
+            "ko": "50봉",
+            "zh": "50袋",
+            "fr": "50 sachets"
+          },
+          "containerLoad": {
+            "en": "20ft: 1,154 cartons",
+            "ja": "20ft：1,154ケース",
+            "ko": "20ft: 1,154박스",
+            "zh": "20尺柜：1,154箱",
+            "fr": "20 pieds : 1 154 cartons"
+          },
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
         },
         {
           "label": {
             "en": "Full sheet, 50 sheets",
             "ja": "全形 50枚",
-            "ko": "전장 50매"
+            "ko": "전장 50매",
+            "zh": "全张 50张",
+            "fr": "Feuille entière, 50 feuilles"
           },
           "sheetSize": "[확인 필요: 약 19×21cm]",
           "netWeight": null,
-          "perCarton": null,
-          "containerLoad": null,
-          "shelfLife": null
-        },
-        {
-          "label": {
-            "en": "Half sheet, 20 sheets",
-            "ja": "半切 20枚",
-            "ko": "반장 20매"
+          "perCarton": {
+            "en": "20 packs",
+            "ja": "20袋",
+            "ko": "20봉",
+            "zh": "20袋",
+            "fr": "20 sachets"
           },
-          "sheetSize": "[확인 필요: 약 19×10.5cm]",
-          "netWeight": null,
-          "perCarton": null,
           "containerLoad": null,
-          "shelfLife": null
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
         },
         {
           "label": {
-            "en": "Half sheet, 100 sheets",
-            "ja": "半切 100枚",
-            "ko": "반장 100매"
+            "en": "Full sheet, 100 sheets",
+            "ja": "全形 100枚",
+            "ko": "전장 100매",
+            "zh": "全张 100张",
+            "fr": "Feuille entière, 100 feuilles"
+          },
+          "sheetSize": "[확인 필요: 약 19×21cm]",
+          "netWeight": null,
+          "perCarton": {
+            "en": "10 packs",
+            "ja": "10袋",
+            "ko": "10봉",
+            "zh": "10袋",
+            "fr": "10 sachets"
+          },
+          "containerLoad": null,
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
+        },
+        {
+          "label": {
+            "en": "Half sheet [확인 필요: 반장 생산 여부]",
+            "ja": "半切 [확인 필요: 반장 생산 여부]",
+            "ko": "반장 [확인 필요: 반장 생산 여부]",
+            "zh": "半张 [확인 필요: 반장 생산 여부]",
+            "fr": "Demi-feuille [확인 필요: 반장 생산 여부]"
           },
           "sheetSize": "[확인 필요: 약 19×10.5cm]",
           "netWeight": null,
@@ -77,11 +133,68 @@
         }
       ],
       "markets": {
-        "en": "Japan, France [확인 필요: 그 외]",
-        "ja": "日本、フランス [확인 필요: 그 외]",
-        "ko": "일본, 프랑스 [확인 필요: 그 외]"
+        "en": "France, Israel, Japan, Vietnam [확인 필요: 2021년 자료 기준]",
+        "ja": "フランス、イスラエル、日本、ベトナム [확인 필요: 2021년 자료 기준]",
+        "ko": "프랑스, 이스라엘, 일본, 베트남 [확인 필요: 2021년 자료 기준]",
+        "zh": "法国、以色列、日本、越南 [확인 필요: 2021년 자료 기준]",
+        "fr": "France, Israël, Japon, Vietnam [확인 필요: 2021년 자료 기준]"
       },
-      "specSheet": null
+      "specSheet": null,
+      "features": {
+        "en": [
+          "Laver only. No oil, no salt.",
+          "Roasted in a far-infrared kiln at high temperature for a crisp sheet.",
+          "Full sheets packed in 10, 50 or 100 sheets, or to your count.",
+          "Available under your own label."
+        ],
+        "ja": [
+          "原材料は海苔のみ。油も塩も使っていません。",
+          "遠赤外線の高温窯で焼き上げ、パリッとした食感に仕上げています。",
+          "全形10枚・50枚・100枚のほか、ご希望の枚数で包装いたします。",
+          "お客さまのブランドでの製造も承ります。"
+        ],
+        "ko": [
+          "원재료는 김뿐입니다. 기름도 소금도 쓰지 않습니다.",
+          "원적외선 고온 가마에서 구워 바삭합니다.",
+          "전장 10매·50매·100매, 또는 원하는 매수로 포장합니다.",
+          "바이어 브랜드로도 생산합니다."
+        ],
+        "zh": [
+          "原料只有紫菜，不加油、不加盐。",
+          "远红外线高温窑烤制，口感酥脆。",
+          "全张10张、50张、100张装，也可按要求定制张数。",
+          "可按客户品牌贴牌生产。"
+        ],
+        "fr": [
+          "Uniquement des algues. Sans huile, sans sel.",
+          "Grillée au four à infrarouge lointain à haute température pour une feuille croustillante.",
+          "Feuilles entières par 10, 50 ou 100, ou au nombre souhaité.",
+          "Disponible sous votre propre marque."
+        ]
+      },
+      "uses": {
+        "en": "Sushi rolls · Hand rolls · Onigiri · Gimbap",
+        "ja": "巻き寿司・手巻き寿司・おにぎり・キンパ",
+        "ko": "스시 롤 · 핸드롤 · 오니기리 · 김밥",
+        "zh": "寿司卷 · 手卷 · 饭团 · 紫菜包饭",
+        "fr": "Makis · Temaki · Onigiri · Gimbap"
+      },
+      "ingredients": {
+        "en": "Laver 100%",
+        "ja": "海苔100%",
+        "ko": "김 100%",
+        "zh": "紫菜100%",
+        "fr": "Algues 100 %"
+      },
+      "origin": {
+        "en": "Laver from Busan, Wando and Namhae (south coast of Korea), roasted in Icheon",
+        "ja": "釜山・莞島・南海(韓国南海岸)産の原藻を利川工場で焼成",
+        "ko": "부산·완도·남해 원초, 이천 공장에서 구움",
+        "zh": "原藻产自韩国南部海岸（釜山、莞岛、南海），在利川工厂烤制",
+        "fr": "Algues de Busan, Wando et Namhae (côte sud de la Corée), grillées à Icheon"
+      },
+      "storage": null,
+      "packaging": null
     },
     {
       "id": "seasoned-snack",
@@ -90,17 +203,23 @@
       "name": {
         "en": "Seasoned Seaweed Snack Packs",
         "ja": "韓国のり お弁当サイズ",
-        "ko": "조미김 (도시락김)"
+        "ko": "조미김 (도시락김)",
+        "zh": "韩国调味海苔（便当装）",
+        "fr": "Snacks d’algues assaisonnées"
       },
       "tagline": {
-        "en": "Traditional laver seasoned with sesame oil, perilla oil and salt. 3-pack and 12-pack.",
-        "ja": "ごま油とえごま油で味付けした伝統の韓国のり。3パック・12パック。",
-        "ko": "참기름·들기름으로 맛을 낸 재래김. 3봉, 12봉."
+        "en": "Traditional West Sea laver, seasoned with sesame oil and bamboo salt. 3-pack and 12-pack.",
+        "ja": "韓国西海の在来海苔を、ごま油と竹塩で味付けしました。3パック・12パック。",
+        "ko": "서해 재래김을 참기름과 죽염으로 맛을 냈습니다. 3봉, 12봉.",
+        "zh": "选用韩国西海传统紫菜，以芝麻油和竹盐调味。3包装、12包装。",
+        "fr": "Algue traditionnelle de la mer de l’Ouest, assaisonnée à l’huile de sésame et au sel de bambou. Lots de 3 et de 12."
       },
       "description": {
-        "en": "Our main product. Traditional laver is kept frozen after harvest to hold its flavour through the year, then seasoned and roasted at high temperature.",
-        "ja": "当社の主力製品です。冬に収穫した原藻を冷凍保管し、一年を通して変わらない風味でお届けします。",
-        "ko": "주력 제품. 겨울에 수확한 원초를 냉동 보관해 연중 같은 맛을 냅니다."
+        "en": "Our main product. Jaerae-gim, the traditional laver of Korea's West Sea, is harvested once a year in winter and stored at −23°C so the flavour stays the same all year. It is lightly seasoned with sesame oil and roasted at high temperature; bamboo salt keeps the taste clean rather than oily.",
+        "ja": "当社の主力製品です。韓国西海の在来海苔は冬に一度だけ収穫され、マイナス23℃で保管することで一年中変わらない風味を保ちます。ごま油で軽く味付けして高温で焼き上げ、竹塩で後味をすっきりと仕上げています。",
+        "ko": "주력 제품입니다. 서해 재래김은 겨울에 한 번 수확해 영하 23℃에서 보관하므로 1년 내내 같은 맛을 냅니다. 참기름으로 가볍게 조미해 고온에서 굽고, 죽염으로 느끼하지 않게 마무리합니다.",
+        "zh": "本公司主力产品。韩国西海传统紫菜每年冬季采收一次，在零下23℃储藏，全年保持风味稳定。以芝麻油轻度调味后高温烤制，竹盐使口味清爽不油腻。",
+        "fr": "Notre produit phare. Le Jaerae-gim, algue traditionnelle de la mer de l’Ouest, est récolté une fois par an en hiver et conservé à −23 °C pour garder la même saveur toute l’année. Il est légèrement assaisonné à l’huile de sésame puis grillé à haute température ; le sel de bambou lui donne un goût net, sans effet gras."
       },
       "flavours": [
         "Original",
@@ -110,11 +229,12 @@
       "variants": [
         {
           "label": {
-            "en": "3 packs",
+            "en": "3-pack",
             "ja": "3パック",
-            "ko": "3봉"
+            "ko": "3봉",
+            "zh": "3包装",
+            "fr": "Lot de 3"
           },
-          "sheetSize": null,
           "netWeight": null,
           "perCarton": null,
           "containerLoad": null,
@@ -122,17 +242,65 @@
         },
         {
           "label": {
-            "en": "12 packs",
+            "en": "12-pack",
             "ja": "12パック",
-            "ko": "12봉"
+            "ko": "12봉",
+            "zh": "12包装",
+            "fr": "Lot de 12"
           },
-          "sheetSize": null,
-          "netWeight": null,
-          "perCarton": null,
-          "containerLoad": null,
-          "shelfLife": null
+          "netWeight": {
+            "en": "3.5 g / 4 g / 4.5 g per pack",
+            "ja": "1袋 3.5g / 4g / 4.5g",
+            "ko": "1봉 3.5g / 4g / 4.5g",
+            "zh": "每小包 3.5g / 4g / 4.5g",
+            "fr": "3,5 g / 4 g / 4,5 g par sachet"
+          },
+          "perCarton": "[확인 필요: 12봉 묶음 × 12]",
+          "containerLoad": {
+            "en": "40ft: 1,448 cartons",
+            "ja": "40ft：1,448ケース",
+            "ko": "40ft: 1,448박스",
+            "zh": "40尺柜：1,448箱",
+            "fr": "40 pieds : 1 448 cartons"
+          },
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
         }
-      ]
+      ],
+      "flavoursVerify": true,
+      "ingredients": {
+        "en": "Laver, corn oil, salt, sesame oil, bamboo salt",
+        "ja": "海苔、コーン油、食塩、ごま油、竹塩",
+        "ko": "김, 옥수수유, 소금, 참기름, 죽염",
+        "zh": "紫菜、玉米油、食盐、芝麻油、竹盐",
+        "fr": "Algues, huile de maïs, sel, huile de sésame, sel de bambou"
+      },
+      "origin": {
+        "en": "Jaerae-gim from Korea's West Sea, stored at −23°C",
+        "ja": "韓国西海産の在来海苔(−23℃保管)",
+        "ko": "서해 재래김 (영하 23℃ 보관)",
+        "zh": "韩国西海传统紫菜（零下23℃储藏）",
+        "fr": "Jaerae-gim de la mer de l’Ouest (Corée), conservé à −23 °C"
+      },
+      "uses": {
+        "en": "With rice · As a snack · With drinks",
+        "ja": "ご飯のお供・おやつ・おつまみ",
+        "ko": "밥반찬 · 간식 · 안주",
+        "zh": "配米饭 · 零食 · 下酒菜",
+        "fr": "Avec du riz · En snack · À l’apéritif"
+      },
+      "markets": {
+        "en": "Japan, Mongolia, Australia, USA, Vietnam [확인 필요: 2021년 자료 기준]",
+        "ja": "日本、モンゴル、オーストラリア、アメリカ、ベトナム [확인 필요: 2021년 자료 기준]",
+        "ko": "일본, 몽골, 호주, 미국, 베트남 [확인 필요: 2021년 자료 기준]",
+        "zh": "日本、蒙古、澳大利亚、美国、越南 [확인 필요: 2021년 자료 기준]",
+        "fr": "Japon, Mongolie, Australie, États-Unis, Vietnam [확인 필요: 2021년 자료 기준]"
+      }
     },
     {
       "id": "seasoned-full-size",
@@ -141,21 +309,26 @@
       "name": {
         "en": "Full-size Seasoned Seaweed (Jaerae-gim, Dol-gim)",
         "ja": "味付け海苔 全形(在来海苔・岩海苔)",
-        "ko": "전장 조미김 (재래김, 돌김)"
+        "ko": "전장 조미김 (재래김, 돌김)",
+        "zh": "整张调味海苔（传统紫菜、岩紫菜）",
+        "fr": "Algues assaisonnées en feuilles entières (Jaerae-gim, Dol-gim)"
       },
       "tagline": {
         "en": "Full sheets of traditional laver and rock laver, seasoned and roasted.",
         "ja": "在来海苔と岩海苔の全形を味付けして焼き上げました。",
-        "ko": "재래김과 돌김 전장을 조미해 구웠습니다."
+        "ko": "재래김과 돌김 전장을 조미해 구웠습니다.",
+        "zh": "传统紫菜和岩紫菜整张调味烤制。",
+        "fr": "Feuilles entières d’algue traditionnelle et d’algue de roche, assaisonnées et grillées."
       },
       "variants": [
         {
           "label": {
             "en": "[확인 필요: 매수]",
             "ja": "[확인 필요: 매수]",
-            "ko": "[확인 필요: 매수]"
+            "ko": "[확인 필요: 매수]",
+            "zh": "[확인 필요: 매수]",
+            "fr": "[확인 필요: 매수]"
           },
-          "sheetSize": null,
           "netWeight": null,
           "perCarton": null,
           "containerLoad": null,
@@ -170,27 +343,191 @@
       "name": {
         "en": "Seasoned Seaweed Flakes (Doljaban)",
         "ja": "ドルジャバン(ふりかけ海苔)",
-        "ko": "돌자반 (김자반)"
+        "ko": "돌자반 (김자반)",
+        "zh": "韩式炒海苔碎（Doljaban）",
+        "fr": "Paillettes d’algues assaisonnées (Doljaban)"
       },
       "tagline": {
-        "en": "Crisp seasoned flakes to sprinkle over rice.",
-        "ja": "ご飯にかけて食べる、香ばしい味付け海苔フレークです。",
-        "ko": "밥에 뿌려 먹는 조미 김자반."
+        "en": "Seasoned laver flakes, aged and roasted. For rice, gimbap, onigiri and noodle toppings.",
+        "ja": "熟成させてから焼き上げた味付け海苔フレーク。ご飯、おにぎり、麺のトッピングに。",
+        "ko": "숙성 후 볶아 구운 김자반. 밥, 김밥, 주먹밥, 면 토핑용.",
+        "zh": "经熟成后炒制的调味海苔碎，适合拌饭、饭团、紫菜包饭和面类配料。",
+        "fr": "Paillettes d’algues assaisonnées, maturées puis grillées. Pour le riz, le gimbap, les onigiri et les nouilles."
       },
       "variants": [
         {
           "label": {
-            "en": "[확인 필요: 중량]",
-            "ja": "[확인 필요: 중량]",
-            "ko": "[확인 필요: 중량]"
+            "en": "30 g",
+            "ja": "30g",
+            "ko": "30g",
+            "zh": "30克",
+            "fr": "30 g"
           },
-          "sheetSize": null,
-          "netWeight": null,
-          "perCarton": null,
+          "netWeight": {
+            "en": "30 g",
+            "ja": "30g",
+            "ko": "30g",
+            "zh": "30克",
+            "fr": "30 g"
+          },
+          "perCarton": {
+            "en": "30 packs",
+            "ja": "30袋",
+            "ko": "30봉",
+            "zh": "30袋",
+            "fr": "30 sachets"
+          },
           "containerLoad": null,
-          "shelfLife": null
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
+        },
+        {
+          "label": {
+            "en": "40 g",
+            "ja": "40g",
+            "ko": "40g",
+            "zh": "40克",
+            "fr": "40 g"
+          },
+          "netWeight": {
+            "en": "40 g",
+            "ja": "40g",
+            "ko": "40g",
+            "zh": "40克",
+            "fr": "40 g"
+          },
+          "perCarton": {
+            "en": "30 packs",
+            "ja": "30袋",
+            "ko": "30봉",
+            "zh": "30袋",
+            "fr": "30 sachets"
+          },
+          "containerLoad": null,
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
+        },
+        {
+          "label": {
+            "en": "45 g",
+            "ja": "45g",
+            "ko": "45g",
+            "zh": "45克",
+            "fr": "45 g"
+          },
+          "netWeight": {
+            "en": "45 g",
+            "ja": "45g",
+            "ko": "45g",
+            "zh": "45克",
+            "fr": "45 g"
+          },
+          "perCarton": {
+            "en": "30 packs",
+            "ja": "30袋",
+            "ko": "30봉",
+            "zh": "30袋",
+            "fr": "30 sachets"
+          },
+          "containerLoad": null,
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
+        },
+        {
+          "label": {
+            "en": "50 g",
+            "ja": "50g",
+            "ko": "50g",
+            "zh": "50克",
+            "fr": "50 g"
+          },
+          "netWeight": {
+            "en": "50 g",
+            "ja": "50g",
+            "ko": "50g",
+            "zh": "50克",
+            "fr": "50 g"
+          },
+          "perCarton": {
+            "en": "30 packs",
+            "ja": "30袋",
+            "ko": "30봉",
+            "zh": "30袋",
+            "fr": "30 sachets"
+          },
+          "containerLoad": {
+            "en": "20ft: 810 / 40ft: 1,847 cartons",
+            "ja": "20ft：810 / 40ft：1,847ケース",
+            "ko": "20ft: 810 / 40ft: 1,847박스",
+            "zh": "20尺柜：810箱 / 40尺柜：1,847箱",
+            "fr": "20 pieds : 810 / 40 pieds : 1 847 cartons"
+          },
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月",
+            "fr": "12 mois à compter de la fabrication"
+          }
         }
-      ]
+      ],
+      "description": {
+        "en": "West Sea laver is cut, lightly seasoned with sesame oil, bamboo salt and sugar, and aged at 0°C for a week so the seasoning soaks in. It is then roasted at about 250°C for 30 minutes for a crisp, savoury bite, and packed with nitrogen to keep it fresh.",
+        "ja": "西海産の海苔をカットし、ごま油・竹塩・砂糖で軽く味付けして、0℃で1週間熟成させ味をなじませます。その後約250℃で30分間炒るように焼き上げ、香ばしくパリッと仕上げました。鮮度を保つため窒素充填で包装しています。",
+        "ko": "서해 김을 잘라 참기름·죽염·설탕으로 가볍게 조미한 뒤 0℃에서 1주일 숙성해 맛이 배게 합니다. 이후 약 250℃에서 30분간 볶듯이 구워 고소하고 바삭하게 만들고, 질소 충전으로 포장해 신선함을 지킵니다.",
+        "zh": "将西海紫菜切碎，以芝麻油、竹盐和砂糖轻度调味，在0℃熟成一周使味道充分渗透，再以约250℃炒烤30分钟，香脆可口。采用充氮包装保持新鲜。",
+        "fr": "Les algues de la mer de l’Ouest sont découpées, légèrement assaisonnées à l’huile de sésame, au sel de bambou et au sucre, puis maturées une semaine à 0 °C pour bien s’imprégner. Elles sont ensuite grillées à environ 250 °C pendant 30 minutes pour une texture croustillante, et conditionnées sous azote pour rester fraîches."
+      },
+      "ingredients": {
+        "en": "Laver, corn oil, sesame seeds, salt, sesame oil, sugar, bamboo salt",
+        "ja": "海苔、コーン油、ごま、食塩、ごま油、砂糖、竹塩",
+        "ko": "김, 옥수수유, 참깨, 소금, 참기름, 설탕, 죽염",
+        "zh": "紫菜、玉米油、芝麻、食盐、芝麻油、砂糖、竹盐",
+        "fr": "Algues, huile de maïs, graines de sésame, sel, huile de sésame, sucre, sel de bambou"
+      },
+      "origin": {
+        "en": "Laver from Korea's West Sea",
+        "ja": "韓国西海産の海苔",
+        "ko": "서해 김",
+        "zh": "韩国西海紫菜",
+        "fr": "Algues de la mer de l’Ouest (Corée)"
+      },
+      "packaging": {
+        "en": "Nitrogen-flushed pouch",
+        "ja": "窒素充填パウチ",
+        "ko": "질소 충전 파우치",
+        "zh": "充氮包装袋",
+        "fr": "Sachet sous atmosphère d’azote"
+      },
+      "uses": {
+        "en": "With rice · Gimbap and onigiri · Topping for udon, ramen, porridge and soup",
+        "ja": "ご飯・キンパ・おにぎり・うどん、ラーメン、お粥、スープのトッピング",
+        "ko": "밥 · 김밥·주먹밥 · 우동·라면·죽·국 토핑",
+        "zh": "拌饭 · 紫菜包饭和饭团 · 乌冬、拉面、粥、汤的配料",
+        "fr": "Avec du riz · Gimbap et onigiri · Sur udon, ramen, porridge de riz et soupes"
+      },
+      "markets": {
+        "en": "Japan, Australia, Vietnam [확인 필요: 2021년 자료 기준]",
+        "ja": "日本、オーストラリア、ベトナム [확인 필요: 2021년 자료 기준]",
+        "ko": "일본, 호주, 베트남 [확인 필요: 2021년 자료 기준]",
+        "zh": "日本、澳大利亚、越南 [확인 필요: 2021년 자료 기준]",
+        "fr": "Japon, Australie, Vietnam [확인 필요: 2021년 자료 기준]"
+      }
     },
     {
       "id": "premium-canister",
@@ -199,7 +536,9 @@
       "name": {
         "en": "Premium Seasoned Seaweed in Canister",
         "ja": "プレミアム味付け海苔(缶入り)",
-        "ko": "프리미엄 캔 조미김"
+        "ko": "프리미엄 캔 조미김",
+        "zh": "罐装调味海苔",
+        "fr": "Algues assaisonnées premium en boîte"
       },
       "flavours": [
         "Original",
@@ -215,12 +554,16 @@
       "name": {
         "en": "Dried Cut Wakame",
         "ja": "乾燥カットわかめ",
-        "ko": "건미역 (컷미역)"
+        "ko": "건미역 (컷미역)",
+        "zh": "干裙带菜（切段）",
+        "fr": "Wakame séché coupé"
       },
       "tagline": {
         "en": "Leaf-only wakame from Wando, dried and cut.",
         "ja": "莞島産わかめの葉の部分だけを乾燥させました。",
-        "ko": "완도산 미역의 잎만 건조."
+        "ko": "완도산 미역의 잎만 건조.",
+        "zh": "只取莞岛裙带菜的叶片干燥而成。",
+        "fr": "Feuilles de wakame de Wando, séchées et coupées."
       }
     },
     {
@@ -230,12 +573,16 @@
       "name": {
         "en": "Dried Hijiki",
         "ja": "ひじき",
-        "ko": "톳"
+        "ko": "톳",
+        "zh": "羊栖菜",
+        "fr": "Hijiki séché"
       },
       "tagline": {
         "en": "Hijiki from Jeju Island.",
         "ja": "済州島産のひじきです。",
-        "ko": "제주산 톳."
+        "ko": "제주산 톳.",
+        "zh": "济州岛出产的羊栖菜。",
+        "fr": "Hijiki de l’île de Jeju."
       }
     },
     {
@@ -245,7 +592,9 @@
       "name": {
         "en": "Other Korean Foods",
         "ja": "その他の韓国食品",
-        "ko": "기타 취급 상품"
+        "ko": "기타 취급 상품",
+        "zh": "其他韩国食品",
+        "fr": "Autres produits coréens"
       },
       "_verify": "유자차, 삼계탕, 떡볶이, 김말이, 냉면, 다시마. 제조가 아닌 취급 상품으로 보임. 현재 취급 품목만 남길 것"
     }
