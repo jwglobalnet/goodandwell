@@ -1,5 +1,6 @@
 ---
-import { languages, langs, langLabel, t, localize, type Lang } from '../i18n/ui';
+import LangSwitch from './LangSwitch.astro';
+import { t, localize, type Lang } from '../i18n/ui';
 interface Props { lang: Lang; path: string }
 const { lang, path } = Astro.props;
 const s = t(lang);
@@ -34,23 +35,7 @@ const current = path.split('/')[0];
     </nav>
 
     <div class="flex items-center gap-2">
-      <ul class="hidden items-center sm:flex" aria-label={s.nav.language}>
-        {langs.map((l) => (
-          <li>
-            <a
-              href={localize(l, path)}
-              hreflang={l}
-              lang={l}
-              title={languages[l]}
-              class:list={[
-                'inline-flex min-h-11 min-w-11 items-center justify-center rounded text-sm font-semibold no-underline',
-                l === lang ? 'text-brand underline decoration-2 underline-offset-4' : 'text-muted hover:text-ink',
-              ]}
-              aria-current={l === lang ? 'true' : undefined}
-            >{langLabel[l]}</a>
-          </li>
-        ))}
-      </ul>
+      <LangSwitch lang={lang} path={path} />
       <a href={`${home}#contact`} class="btn btn-primary hidden md:inline-flex">{s.nav.contact}</a>
 
       <details class="group relative xl:hidden">
@@ -66,23 +51,19 @@ const current = path.split('/')[0];
               ))}
             </ul>
           </nav>
-          <ul class="mt-2 grid grid-cols-2 border-t border-line pt-2 sm:hidden" aria-label={s.nav.language}>
-            {langs.map((l) => (
-              <li>
-                <a href={localize(l, path)} hreflang={l} lang={l}
-                  class:list={['flex min-h-11 items-center justify-center rounded text-sm font-semibold no-underline', l === lang ? 'bg-paper text-brand' : 'text-muted']}
-                  aria-current={l === lang ? 'true' : undefined}>{languages[l]}</a>
-              </li>
-            ))}
-          </ul>
+
         </div>
       </details>
     </div>
   </div>
 </header>
 <script>
-  // Close the mobile menu after choosing a link (anchor links stay on the same page).
-  document.querySelectorAll('header details a').forEach((a) =>
-    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
-  );
+  // Close menus after choosing a link, when clicking elsewhere, or on Escape.
+  const menus = [...document.querySelectorAll<HTMLDetailsElement>('header details')];
+  menus.forEach((d) => {
+    d.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => d.removeAttribute('open')));
+    d.addEventListener('toggle', () => { if (d.open) menus.forEach((o) => o !== d && o.removeAttribute('open')); });
+  });
+  document.addEventListener('click', (e) => menus.forEach((d) => { if (!d.contains(e.target as Node)) d.removeAttribute('open'); }));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menus.forEach((d) => d.removeAttribute('open')); });
 </script>

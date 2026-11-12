@@ -6,7 +6,7 @@ import Photo from '../../components/Photo.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { langs, t, localize, formatDate, company, type Lang } from '../../i18n/ui';
+import { langs, t, localize, formatDate, company, newsLang, traditional, type Lang } from '../../i18n/ui';
 import { getActiveProducts } from '../../lib/products';
 
 export function getStaticPaths() {
@@ -16,7 +16,8 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const products = await getActiveProducts();
-const news = (await getCollection('news', (n) => n.data.lang === lang))
+const tr = (x: string) => (lang === 'zh-hant' ? traditional(x) : x);
+const news = (await getCollection('news', (n) => n.data.lang === newsLang(lang)))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
@@ -144,8 +145,8 @@ const factoryPhotos = [
           {news.map((n) => (
             <li class="rounded-lg border border-line bg-card p-6">
               <time datetime={n.data.date.toISOString().slice(0, 10)} class="text-sm text-muted">{formatDate(n.data.date, lang)}</time>
-              <h3 class="mt-2 text-lg font-bold leading-snug">{n.data.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{n.data.summary}</p>
+              <h3 class="mt-2 text-lg font-bold leading-snug">{tr(n.data.title)}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{tr(n.data.summary)}</p>
             </li>
           ))}
         </ul>

@@ -2,19 +2,33 @@
 // Any text containing "[확인 필요: ...]" is rendered as a highlighted placeholder.
 // Sources: 2021 company deck, Product_Catalog_3.xlsx, 2013/2014/2017 catalogs, current goodandwell.co.kr.
 
+import * as OpenCC from 'opencc-js';
+
+/** Language names as each language's own speakers write them, in switcher order. */
 export const languages = {
   en: 'English',
+  fr: 'Français',
   ja: '日本語',
   ko: '한국어',
   zh: '简体中文',
+  'zh-hant': '繁體中文',
 } as const;
 
 export type Lang = keyof typeof languages;
 export const langs = Object.keys(languages) as Lang[];
 export const defaultLang: Lang = 'en';
 
-export const htmlLang: Record<Lang, string> = { en: 'en', ja: 'ja', ko: 'ko', zh: 'zh-Hans' };
-export const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO', zh: '中文' };
+export const htmlLang: Record<Lang, string> = { en: 'en', fr: 'fr', ja: 'ja', ko: 'ko', zh: 'zh-Hans', 'zh-hant': 'zh-Hant' };
+
+// Traditional Chinese is generated from the Simplified copy (characters only, no regional
+// vocabulary), so both scripts stay in step and neither is tied to a country name.
+const toTraditional = OpenCC.Converter({ from: 'cn', to: 'tw' });
+function traditional<T>(v: T): T {
+  if (typeof v === 'string') return toTraditional(v) as T;
+  if (Array.isArray(v)) return v.map(traditional) as T;
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, traditional(x)])) as T;
+  return v;
+}
 
 const en = {
   meta: {
@@ -870,7 +884,7 @@ const zh: Dict = {
     lead: '2007年创立，在韩国利川生产紫菜，以 Good&Well 品牌销往海外。',
     intro: [
       '宰源 Global Net 于2007年10月创立，2012年5月在京畿道利川市建成自有工厂。主要生产烤紫菜、调味海苔和海苔碎，出口占销售额90%以上。',
-      '主要市场为日本，产品也曾出口至欧洲、以色列、台湾地区、美国、澳大利亚、越南和蒙古。[확인 필요: 현재 거래국]',
+      '主要市场为日本，产品也曾出口至欧洲、以色列、美国、澳大利亚、越南和蒙古等地。[확인 필요: 현재 거래국]',
       'Good&Well 这个名字代表着我们创立以来的理念：用好的原料、好的设备和经验，做出好的产品。',
     ],
     factsTitle: '公司概况',
@@ -903,7 +917,232 @@ const zh: Dict = {
   },
 };
 
-export const ui: Record<Lang, Dict> = { en, ja, ko, zh };
+const fr: Dict = {
+  meta: {
+    siteName: 'Good&Well',
+    home: 'Good&Well | Fabricant et exportateur coréen d’algues',
+    homeDescription:
+      'Nori grillée, algues assaisonnées et paillettes d’algues fabriquées dans notre usine d’Icheon (Corée) depuis 2007. Export et fabrication sous marque de distributeur.',
+    products: 'Produits',
+    productsDescription:
+      'Nori grillée pour sushis et gimbap, snacks d’algues assaisonnées, algues assaisonnées en feuilles entières et paillettes d’algues. Caractéristiques et conditionnements.',
+    factory: 'Usine et qualité',
+    factoryDescription: 'Notre ligne de production d’Icheon, étape par étape, et nos certifications.',
+    about: 'À propos',
+    aboutDescription: 'Jaewon Global Net, fabricant coréen d’algues tourné vers l’export depuis 2007. Historique et marques.',
+  },
+  nav: {
+    products: 'Produits',
+    factory: 'Usine et qualité',
+    oem: 'Marque de distributeur',
+    news: 'Actualités',
+    about: 'À propos',
+    contact: 'Contact',
+    menu: 'Menu',
+    language: 'Langue',
+    skip: 'Aller au contenu',
+  },
+  hero: {
+    eyebrow: 'Good&Well · Jaewon Global Net',
+    title: 'Nous grillons et conditionnons des algues coréennes dans notre propre usine, pour les importateurs et les marques de distributeur.',
+    lead: 'Nori grillée pour sushis, snacks d’algues assaisonnées et paillettes, fabriqués à Icheon depuis 2007. Plus de 90 % de notre activité est réalisée à l’export, principalement vers le Japon.',
+    ctaSample: 'Demander un échantillon',
+    ctaCatalog: 'Catalogue (PDF)',
+    catalogPending: '[확인 필요: 새 카탈로그 PDF]',
+    videoPending: '[확인 필요: 공장 영상 — 받으면 배경 영상으로 교체]',
+  },
+  stats: [
+    { value: 'Depuis 2007', label: 'Usine propre à Icheon, achevée en 2012' },
+    { value: '90 %+', label: 'Part de l’export dans notre activité' },
+    { value: 'Japon · France · Israël', label: 'Parmi nos marchés export' },
+    { value: 'FSSC 22000 · HACCP', label: 'Certifications sécurité alimentaire [확인 필요: 유효기간]' },
+  ],
+  productsSection: {
+    eyebrow: 'Produits',
+    title: 'Nos produits',
+    lead: 'Chaque produit est disponible en conditionnement standard ou dans votre propre emballage.',
+    viewAll: 'Tous les produits et caractéristiques',
+    details: 'Détails et caractéristiques',
+  },
+  factory: {
+    eyebrow: 'Usine et qualité',
+    title: 'De la feuille brute au carton, sur nos propres lignes',
+    lead: 'Alimentation, tri, grillage, assaisonnement, découpe et conditionnement : tout se fait dans notre usine d’Icheon (province de Gyeonggi). La ligne comprend un détecteur de métaux automatique et un trieur de corps étrangers.',
+    steps: {
+      sorting: 'Tri des corps étrangers',
+      roasting: 'Grillage',
+      cutting: 'Découpe automatique',
+      innerPack: 'Emballage individuel',
+    },
+    certTitle: 'Certifications',
+    certValue: 'FSSC 22000 (2020), HACCP (2020) [확인 필요: 유효기간]',
+    more: 'Voir tout le processus',
+  },
+  oem: {
+    eyebrow: 'OEM / Marque de distributeur',
+    title: 'Votre marque en cinq étapes',
+    lead: 'Nous fabriquons sous votre marque, au format et avec l’emballage de votre choix.',
+    steps: [
+      { title: 'Demande', body: 'Indiquez-nous le produit, le format, le marché visé et le volume prévu.' },
+      { title: 'Échantillon', body: 'Nous envoyons des échantillons selon vos spécifications pour valider goût, taille et texture.' },
+      { title: 'Devis', body: 'Vous recevez un prix selon votre emballage et le volume commandé.' },
+      { title: 'Production', body: 'Nous produisons avec l’emballage et le nombre d’unités validés.' },
+      { title: 'Expédition', body: 'Nous préparons les documents d’export et expédions depuis la Corée.' },
+    ],
+    facts: [
+      { k: 'Commande minimum', v: '[확인 필요: MOQ]' },
+      { k: 'Délai', v: '[확인 필요: 납기]' },
+      { k: 'Capacité mensuelle', v: '[확인 필요: 월 생산 능력]' },
+    ],
+  },
+  news: { eyebrow: 'Actualités', title: 'Actualités', empty: 'Aucune actualité pour le moment.' },
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Demander un devis ou un échantillon',
+    lead: 'Dites-nous ce que vous recherchez. Nous répondons en anglais, en japonais ou en coréen. [확인 필요: 프랑스어 응대 가능 여부]',
+    form: {
+      name: 'Nom',
+      company: 'Société',
+      email: 'E-mail',
+      country: 'Pays',
+      product: 'Produit souhaité',
+      productAny: 'Non défini / plusieurs',
+      oem: 'Marque de distributeur (OEM)',
+      message: 'Message',
+      messageHint: 'Format, volume, port de destination…',
+      submit: 'Envoyer la demande',
+      sending: 'Envoi…',
+      success: 'Merci. Votre demande a bien été envoyée ; nous vous répondrons par e-mail.',
+      error: 'L’envoi a échoué. Merci de nous écrire directement par e-mail.',
+      notReady: '[확인 필요: 문의 폼 키(Web3Forms) 발급 전 — 지금은 이메일로 문의]',
+      subject: 'Website inquiry (FR)',
+    },
+    person: { title: 'Ventes export', name: 'Suhyun Lee', role: 'Manager' },
+    office: { title: 'Siège et usine', company: 'Jaewon Global Net' },
+    tel: 'Tél.',
+    fax: 'Fax',
+    mobile: 'Mobile',
+    email: 'E-mail',
+  },
+  footer: { brands: 'Marques', company: 'Société', notice: 'Version de test. Certaines données sont en cours de vérification.' },
+  productPage: {
+    title: 'Produits',
+    lead: 'Algues grillées et assaisonnées fabriquées dans notre usine en Corée. Formats et caractéristiques adaptables à votre marché.',
+    breadcrumb: 'Produits',
+    specTitle: 'Caractéristiques',
+    specCols: {
+      label: 'Format',
+      sheetSize: 'Taille de la feuille',
+      netWeight: 'Poids net',
+      perCarton: 'Unités par carton',
+      containerLoad: 'Chargement conteneur',
+      shelfLife: 'Durée de conservation',
+    },
+    specNote: 'D’autres nombres de feuilles et formats sont possibles sur demande.',
+    specSheet: 'Fiche technique (PDF)',
+    specSheetPending: '[확인 필요: 스펙시트 PDF]',
+    requestSample: 'Demander un échantillon',
+    askQuote: 'Demander un devis',
+    markets: 'Principaux marchés export',
+    flavours: 'Saveurs',
+    flavoursVerify: '[확인 필요: 현재 생산하는 맛]',
+    uses: 'Utilisations',
+    overview: 'En bref',
+    overviewKeys: { ingredients: 'Ingrédients', origin: 'Origine', storage: 'Conservation', packaging: 'Emballage' },
+    otherProducts: 'Autres produits',
+    photoPending: '[확인 필요: 제품 사진]',
+    gallery: 'Photos',
+  },
+  flavours: { Original: 'Nature', Kimchi: 'Kimchi', Wasabi: 'Wasabi' },
+  roasted: {
+    alt: {
+      'roasted-sheets.jpg': 'Pile de feuilles d’algues grillées',
+      'roasted-packs.jpg': 'Quatre sachets de nori grillée pour sushis',
+      'use-gimbap.jpg': 'Gimbap tranché roulé dans une feuille d’algue grillée',
+      'use-onigiri.jpg': 'Onigiri enveloppés d’algue grillée',
+    },
+    packsCaption: 'Exemples de conditionnement. [확인 필요: 사진 속 브랜드 공개 가능 여부]',
+  },
+  factoryPage: {
+    title: 'Usine et qualité',
+    lead: 'Notre usine d’Icheon (province de Gyeonggi) a été achevée en 2012. Tous les produits présentés ici y sont grillés, assaisonnés et conditionnés.',
+    aerialPending: '[확인 필요: 공장 항공사진 원본 — 기존 홈페이지 사진]',
+    processTitle: 'Processus de fabrication',
+    processLead: 'Les onze étapes de notre ligne, en photos.',
+    steps: [
+      { title: 'Détection des métaux', body: 'Un détecteur de métaux automatique contrôle les feuilles.' },
+      { title: 'Alimentation automatique', body: 'Les feuilles sont introduites automatiquement dans la ligne.' },
+      { title: 'Tri des corps étrangers', body: 'Une trieuse élimine les corps étrangers.' },
+      { title: 'Grillage', body: 'Les feuilles sont grillées dans un four à infrarouge lointain à haute température.' },
+      { title: 'Assaisonnement', body: 'Huile et sel sont appliqués pour les produits assaisonnés. La nori grillée nature ne passe pas par cette étape.' },
+      { title: 'Comptage et contrôle', body: 'Les feuilles sont comptées et contrôlées.' },
+      { title: 'Découpe automatique', body: 'Les feuilles sont découpées au format de chaque produit.' },
+      { title: 'Emballage individuel', body: 'Les feuilles sont placées en sachets individuels.' },
+      { title: 'Salle de conditionnement', body: 'Vue de la salle de conditionnement.' },
+      { title: 'Suremballage', body: 'Les sachets individuels sont regroupés dans un suremballage.' },
+      { title: 'Contrôle final et mise en carton', body: 'Les produits finis sont contrôlés puis mis en carton.' },
+    ],
+    stepPhotoPending: '[확인 필요: 11번 새 사진 — 기존 사진에 거래처 박스]',
+    rawTitle: 'Matières premières',
+    raw: [
+      { title: 'Nori grillée', body: 'Algues récoltées au large de Busan, Wando et Namhae, sur la côte sud de la Corée.' },
+      { title: 'Algues assaisonnées', body: 'Jaerae-gim, l’algue traditionnelle de la mer de l’Ouest, récoltée une fois par an en hiver et conservée à −23 °C pour garder sa saveur toute l’année.' },
+      { title: 'Assaisonnement', body: 'Huile de sésame, huile de maïs, sel et sel de bambou, selon le produit.' },
+    ],
+    certTitle: 'Certifications',
+    certLead: 'Copies disponibles sur demande.',
+    certs: [
+      { name: 'FSSC 22000', note: 'Système de management de la sécurité des denrées alimentaires', year: '2020' },
+      { name: 'HACCP', note: 'Analyse des dangers et points critiques pour leur maîtrise', year: '2020' },
+      { name: 'Exportateur agréé (par produit)', note: 'Service des douanes coréen — déclarations d’origine au titre des accords commerciaux, dont l’accord UE–Corée', year: '2022' },
+      { name: 'Établissement de transformation enregistré', note: 'Service national de contrôle de la qualité des produits de la pêche (export vers la Chine)', year: '2013' },
+    ],
+    validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
+  },
+  aboutPage: {
+    title: 'À propos de Jaewon Global Net',
+    lead: 'Fabricant coréen d’algues tourné vers l’export, sous la marque Good&Well depuis 2007.',
+    intro: [
+      'Jaewon Global Net a été fondée en octobre 2007 et a achevé sa propre usine à Icheon (province de Gyeonggi) en mai 2012. Nous fabriquons de la nori grillée, des algues assaisonnées et des paillettes d’algues ; plus de 90 % de nos ventes se font à l’export.',
+      'Le Japon est notre principal marché. Nos produits ont aussi été expédiés en Europe, en Israël, à Taïwan, aux États-Unis, en Australie, au Vietnam et en Mongolie. [확인 필요: 현재 거래국]',
+      'Derrière le nom Good&Well, une idée simple que nous gardons depuis le début : de bonnes matières premières, de bons équipements et un vrai savoir-faire font de bons produits.',
+    ],
+    factsTitle: 'Société',
+    facts: [
+      { k: 'Société', v: 'Jaewon Global Net' },
+      { k: 'Fondation', v: 'Octobre 2007' },
+      { k: 'Usine', v: 'Icheon, Gyeonggi (achevée en mai 2012)' },
+      { k: 'Produits', v: 'Nori grillée, algues assaisonnées, paillettes d’algues' },
+      { k: 'Effectif', v: '[확인 필요: 직원 수]' },
+    ],
+    historyTitle: 'Historique',
+    history: [
+      { date: '2007.10', text: 'Création de Jaewon Global Net' },
+      { date: '2009.11', text: 'Prix « Export Tower » 1 million USD' },
+      { date: '2011.11', text: 'Prix « Export Tower » 3 millions USD' },
+      { date: '2012.05', text: 'Achèvement de l’usine d’Icheon' },
+      { date: '2012.10', text: 'Prix « Export Tower » 8 millions USD' },
+      { date: '2013.12', text: 'Enregistrement comme établissement de transformation pour l’export vers la Chine' },
+      { date: '2020.11', text: 'Certification FSSC 22000' },
+      { date: '2020.12', text: 'Certification HACCP' },
+      { date: '2022.01', text: 'Statut d’exportateur agréé par produit (douanes coréennes)' },
+    ],
+    brandsTitle: 'Marques',
+    brands: [
+      { name: 'Good&Well', sub: '굿앤웰', body: 'Notre marque principale : de bons produits bien faits, à partir de bonnes matières premières et d’un savoir-faire maîtrisé, dans une usine bien gérée.' },
+      { name: 'Seowooryeong', sub: '서우령 · 瑞遇昤', body: 'Son nom signifie « les bonnes choses se rencontrent et brillent ». Algue traditionnelle de la mer de l’Ouest assaisonnée à l’huile de sésame, à l’huile de périlla et au sel de bambou, grillée au four à infrarouge lointain. [확인 필요: 현재 원재료]' },
+      { name: 'HaoQHaoP', sub: '好质好价', body: 'Bonne qualité, bon prix : des algues du quotidien à un prix compétitif.' },
+    ],
+    logoPending: '[확인 필요: 로고 원본]',
+  },
+};
+
+const zhHant: Dict = {
+  ...traditional(zh),
+  contact: { ...traditional(zh.contact), form: { ...traditional(zh.contact.form), subject: 'Website inquiry (ZH-Hant)' } },
+};
+
+export const ui: Record<Lang, Dict> = { en, fr, ja, ko, zh, 'zh-hant': zhHant };
 
 export function t(lang: Lang) {
   return ui[lang];
@@ -916,15 +1155,30 @@ export function localize(lang: Lang, path = '') {
 }
 
 export function formatDate(date: Date, lang: Lang) {
-  const locale = { en: 'en-GB', ja: 'ja-JP', ko: 'ko-KR', zh: 'zh-CN' }[lang];
+  const locale = { en: 'en-GB', fr: 'fr-FR', ja: 'ja-JP', ko: 'ko-KR', zh: 'zh-Hans', 'zh-hant': 'zh-Hant' }[lang];
   return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Seoul' }).format(date);
 }
 
-/** Resolve a spec value that is either one string for all languages or one per language. */
-export function pick(v: string | Record<Lang, string> | null | undefined, lang: Lang) {
-  if (v == null) return v;
-  return typeof v === 'string' ? v : v[lang];
+/** Languages whose text is stored in content files; Traditional Chinese is derived from `zh`. */
+export type StoredLang = Exclude<Lang, 'zh-hant'>;
+
+/** Read a per-language field from content data. */
+export function loc<T extends string | string[]>(v: Record<StoredLang, T>, lang: Lang): T;
+export function loc<T extends string | string[]>(v: Record<StoredLang, T> | null | undefined, lang: Lang): T | undefined;
+export function loc<T extends string | string[]>(v: Record<StoredLang, T> | null | undefined, lang: Lang) {
+  if (v == null) return undefined;
+  return lang === 'zh-hant' ? traditional(v.zh) : v[lang];
 }
+
+/** Resolve a spec value that is either one string for all languages or one per language. */
+export function pick(v: string | Record<StoredLang, string> | null | undefined, lang: Lang) {
+  if (v == null) return v;
+  return typeof v === 'string' ? (lang === 'zh-hant' ? traditional(v) : v) : loc(v, lang);
+}
+
+/** Language whose news files are shown for a page language. */
+export const newsLang = (lang: Lang): StoredLang => (lang === 'zh-hant' ? 'zh' : lang);
+export { traditional };
 
 export const company = {
   address: '87, Cheongbaengni-ro 697beon-gil, Baeksa-myeon, Icheon-si, Gyeonggi-do, Republic of Korea',

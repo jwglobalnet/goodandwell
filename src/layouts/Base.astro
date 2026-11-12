@@ -3,6 +3,7 @@ import '../styles/global.css';
 import jaFonts from '@fontsource-variable/noto-sans-jp/index.css?url';
 import koFonts from '@fontsource-variable/noto-sans-kr/index.css?url';
 import zhFonts from '@fontsource-variable/noto-sans-sc/index.css?url';
+import zhHantFonts from '@fontsource-variable/noto-sans-tc/index.css?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { langs, htmlLang, t, localize, type Lang } from '../i18n/ui';
@@ -41,6 +42,7 @@ const canonical = new URL(localize(lang, path), site).href;
     {lang === 'ja' && <link rel="stylesheet" href={jaFonts} />}
     {lang === 'ko' && <link rel="stylesheet" href={koFonts} />}
     {lang === 'zh' && <link rel="stylesheet" href={zhFonts} />}
+    {lang === 'zh-hant' && <link rel="stylesheet" href={zhHantFonts} />}
   </head>
   <body class="min-h-dvh bg-paper text-ink antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-card focus:px-4 focus:py-3">{s.nav.skip}</a>

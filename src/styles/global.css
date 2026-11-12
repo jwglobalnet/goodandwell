@@ -27,6 +27,10 @@
   --font-sans: "Noto Sans SC Variable", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
   --font-display: "Space Grotesk Variable", "Noto Sans SC Variable", system-ui, sans-serif;
 }
+:root:lang(zh-Hant) {
+  --font-sans: "Noto Sans TC Variable", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Noto Sans TC Variable", system-ui, sans-serif;
+}
 :root:lang(ko) {
   --font-sans: "Noto Sans KR Variable", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --font-display: "Space Grotesk Variable", "Noto Sans KR Variable", system-ui, sans-serif;

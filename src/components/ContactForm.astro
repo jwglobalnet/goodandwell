@@ -1,6 +1,6 @@
 ---
 import Text from './Text.astro';
-import { t, company, type Lang } from '../i18n/ui';
+import { t, company, type Lang, loc } from '../i18n/ui';
 import { getActiveProducts } from '../lib/products';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -45,7 +45,7 @@ const label = 'block text-sm font-semibold text-ink';
     <label for={`product-${lang}`} class={label}>{f.product}</label>
     <select id={`product-${lang}`} name="product" class={field} data-product-select>
       <option value="">{f.productAny}</option>
-      {products.map((p) => <option value={p.data.id}>{p.data.name[lang]}</option>)}
+      {products.map((p) => <option value={p.data.id}>{loc(p.data.name, lang)}</option>)}
       <option value="oem">{f.oem}</option>
     </select>
   </div>

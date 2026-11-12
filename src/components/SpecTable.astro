@@ -1,6 +1,6 @@
 ---
 import Text from './Text.astro';
-import { t, pick, type Lang } from '../i18n/ui';
+import { t, pick, type Lang, loc } from '../i18n/ui';
 import type { CollectionEntry } from 'astro:content';
 interface Props { lang: Lang; variants: NonNullable<CollectionEntry<'products'>['data']['variants']> }
 const { lang, variants } = Astro.props;
@@ -21,7 +21,7 @@ const cols = (['sheetSize', 'netWeight', 'perCarton', 'containerLoad', 'shelfLif
     <tbody>
       {variants.map((v) => (
         <tr>
-          <th scope="row"><Text text={v.label[lang]} /></th>
+          <th scope="row"><Text text={loc(v.label, lang)} /></th>
           {cols.map((k) => <td><Text text={pick(v[k], lang)} /></td>)}
         </tr>
       ))}

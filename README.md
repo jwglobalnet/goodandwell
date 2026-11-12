@@ -34,7 +34,7 @@ Search the repo for `확인 필요` to see what is still open.
 
 ## Pages done
 
-Languages: English (`/en/`), Japanese (`/ja/`), Korean (`/ko/`), Simplified Chinese (`/zh/`).
+Languages: English (`/en/`), French (`/fr/`), Japanese (`/ja/`), Korean (`/ko/`), Simplified Chinese (`/zh/`), Traditional Chinese (`/zh-hant/`, generated from the Simplified copy at build time).
 
 - Home — hero, figures, products, factory & quality, OEM steps, news, contact
 - Products list and detail (`/<lang>/products/`, `/<lang>/products/<id>/`)
