@@ -12,12 +12,8 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const f = s.factoryPage;
-// Photo 11 shows a customer's carton (brand not cleared for publication), so it is left out.
-const photos = [
-  'process-01-metal-detector.jpg', 'process-02-feeder.jpg', 'process-03-sorting.jpg', 'process-04-roasting.jpg',
-  'process-05-seasoning.jpg', 'process-06-counting.jpg', 'process-07-cutting.jpg', 'process-08-inner-pack.jpg',
-  'process-09-packing-line.jpg', 'process-10-outer-pack.jpg', undefined,
-];
+// Stills from the company's factory video (seasoned seaweed line), cropped clear of on-screen text and logos.
+const photos = Array.from({ length: 12 }, (_, i) => `factory-video/step-${String(i + 1).padStart(2, '0')}.jpg`);
 ---
 <Base lang={lang} title={`${s.meta.factory} | Good&Well`} description={s.meta.factoryDescription} path="factory/">
   <section class="border-b border-line bg-card">
@@ -28,7 +24,7 @@ const photos = [
         <p class="mt-4 max-w-xl leading-relaxed text-muted">{f.lead}</p>
       </div>
       <div class="aspect-[16/9] overflow-hidden rounded-lg">
-        <Photo alt={f.title} pending={f.aerialPending} />
+        <Photo name="factory-video/aerial.jpg" alt={f.aerialAlt} loading="eager" widths={[640, 1280]} sizes="(min-width: 1024px) 50vw, 100vw" />
       </div>
     </div>
   </section>
@@ -40,7 +36,7 @@ const photos = [
         {f.steps.map((step, i) => (
           <li class="overflow-hidden rounded-lg border border-line bg-card">
             <div class="aspect-[4/3]">
-              <Photo name={photos[i]} alt={step.title} pending={f.stepPhotoPending} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+              <Photo name={photos[i]} alt={step.title} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
             </div>
             <div class="p-5">
               <p class="font-display text-sm font-semibold text-brand">{String(i + 1).padStart(2, '0')}</p>
