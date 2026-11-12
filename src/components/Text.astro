@@ -1,0 +1,8 @@
+---
+// Renders text and highlights "[확인 필요: ...]" placeholders. Null/empty values become a bare placeholder.
+interface Props { text?: string | null; fallback?: string }
+const { text, fallback = '[확인 필요]' } = Astro.props;
+const value = text == null || text === '' ? fallback : text;
+const parts = value.split(/(\[확인 필요[^\]]*\])/g).filter(Boolean);
+---
+{parts.map((p) => (p.startsWith('[확인 필요') ? <span class="ph" data-placeholder>{p}</span> : p))}

@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import Text from './Text.astro';
+import { img } from '../lib/images';
+interface Props {
+  name?: string;
+  alt: string;
+  pending?: string;
+  class?: string;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fit?: 'cover' | 'contain';
+}
+const { name, alt, pending = '[확인 필요: 사진]', class: cls = '', widths = [400, 800], sizes = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw', loading = 'lazy', fit = 'cover' } = Astro.props;
+const src = name ? img(name) : undefined;
+---
+{src ? (
+  <Image src={src} alt={alt} widths={widths.filter((w) => w <= src.width * 2)} sizes={sizes} loading={loading}
+    class:list={['h-full w-full bg-photo', fit === 'cover' ? 'object-cover' : 'object-contain', cls]} />
+) : (
+  <div class:list={['flex h-full w-full items-center justify-center bg-photo p-4 text-center text-sm', cls]} role="img" aria-label={alt}>
+    <Text text={pending} />
+  </div>
+)}

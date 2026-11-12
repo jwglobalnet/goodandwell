@@ -1,0 +1,70 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Photo from '../../../components/Photo.astro';
+import Text from '../../../components/Text.astro';
+import { langs, t, localize, type Lang } from '../../../i18n/ui';
+import { getActiveProducts } from '../../../lib/products';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const p = s.productPage;
+const products = await getActiveProducts();
+---
+<Base lang={lang} title={`${s.meta.products} | Good&Well`} description={s.meta.productsDescription} path="products/">
+  <section class="border-b border-line bg-card">
+    <div class="container-x py-12 sm:py-16">
+      <p class="eyebrow">Products</p>
+      <h1 class="mt-2 text-3xl font-bold sm:text-4xl">{p.title}</h1>
+      <p class="mt-4 max-w-2xl leading-relaxed text-muted">{p.lead}</p>
+    </div>
+  </section>
+
+  <section class="container-x py-12 sm:py-16">
+    <ul class="grid gap-6">
+      {products.map((prod) => {
+        const d = prod.data;
+        const href = localize(lang, `products/${d.id}/`);
+        return (
+          <li>
+            <article class="group relative grid overflow-hidden rounded-lg border border-line bg-card md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+              <div class="aspect-[4/3] md:aspect-auto md:min-h-64">
+                <Photo name={d.images?.[0]} alt={d.name[lang]} pending={p.photoPending} sizes="(min-width: 768px) 40vw, 100vw" />
+              </div>
+              <div class="flex flex-col p-6 sm:p-8">
+                <h2 class="text-xl font-bold leading-snug sm:text-2xl">
+                  <a href={href} class="no-underline after:absolute after:inset-0 group-hover:text-brand">{d.name[lang]}</a>
+                </h2>
+                {d.tagline && <p class="mt-3 leading-relaxed text-muted"><Text text={d.tagline[lang]} /></p>}
+                <dl class="mt-5 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+                  {d.variants && (
+                    <div>
+                      <dt class="font-semibold">{p.specCols.label}</dt>
+                      <dd class="text-muted">{d.variants.map((v, i) => <>{i > 0 && ' · '}<Text text={v.label[lang]} /></>)}</dd>
+                    </div>
+                  )}
+                  {d.flavours && (
+                    <div>
+                      <dt class="font-semibold">{p.flavours}</dt>
+                      <dd class="text-muted">{d.flavours.map((f) => s.flavours[f] ?? f).join(' · ')}</dd>
+                    </div>
+                  )}
+                  {d.markets && (
+                    <div>
+                      <dt class="font-semibold">{p.markets}</dt>
+                      <dd class="text-muted"><Text text={d.markets[lang]} /></dd>
+                    </div>
+                  )}
+                </dl>
+                <p class="mt-auto pt-6 text-sm font-semibold text-brand">{s.productsSection.details} <span aria-hidden="true">→</span></p>
+              </div>
+            </article>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+</Base>

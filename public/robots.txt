@@ -1,0 +1,3 @@
+# Crawling is allowed so that the noindex tag/header can be read during the test period.
+User-agent: *
+Allow: /

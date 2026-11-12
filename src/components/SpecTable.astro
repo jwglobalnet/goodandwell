@@ -1,0 +1,30 @@
+---
+import Text from './Text.astro';
+import { t, type Lang } from '../i18n/ui';
+import type { CollectionEntry } from 'astro:content';
+interface Props { lang: Lang; variants: NonNullable<CollectionEntry<'products'>['data']['variants']> }
+const { lang, variants } = Astro.props;
+const c = t(lang).productPage.specCols;
+// Show the sheet-size column only when at least one variant uses it.
+const cols = (['sheetSize', 'netWeight', 'perCarton', 'containerLoad', 'shelfLife'] as const).filter(
+  (k) => k !== 'sheetSize' || variants.some((v) => v.sheetSize !== undefined),
+);
+---
+<div class="overflow-x-auto rounded-lg border border-line bg-card" role="region" aria-label={t(lang).productPage.specTitle} tabindex="0">
+  <table class="spec-table min-w-[40rem]">
+    <thead>
+      <tr>
+        <th scope="col">{c.label}</th>
+        {cols.map((k) => <th scope="col">{c[k]}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {variants.map((v) => (
+        <tr>
+          <th scope="row"><Text text={v.label[lang]} /></th>
+          {cols.map((k) => <td><Text text={v[k]} /></td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
