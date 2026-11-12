@@ -17,16 +17,19 @@ const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const p = s.productPage;
 const d = product.data;
-const isRoasted = d.id === 'roasted-seaweed';
 const images = d.images ?? [];
 const [mainImage, ...moreImages] = images;
 const others = (await getActiveProducts()).filter((o) => o.data.id !== d.id);
 const sampleHref = `${localize(lang)}?product=${d.id}#contact`;
-const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d.name[lang];
+const alt = (file: string) => s.roasted.alt[file] ?? d.name[lang];
+// Overview rows come from the product data; a key that exists but is null shows as a placeholder.
+const overview = (['ingredients', 'origin', 'storage', 'packaging'] as const)
+  .filter((k) => k in d)
+  .map((k) => ({ k: p.overviewKeys[k], v: d[k]?.[lang] ?? null }));
 ---
 <Base lang={lang} title={`${d.name[lang]} | Good&Well`} description={d.tagline?.[lang] ?? d.name[lang]} path={`products/${d.id}/`}>
   <nav aria-label="Breadcrumb" class="border-b border-line bg-card">
-    <ol class="container-x flex flex-wrap items-center gap-x-2 py-3 text-sm text-muted">
+    <ol class="container-x flex flex-wrap items-center gap-x-2 py-1 text-sm text-muted">
       <li><a href={localize(lang)} class="inline-flex min-h-11 items-center hover:text-brand">Good&amp;Well</a></li>
       <li aria-hidden="true">/</li>
       <li><a href={localize(lang, 'products/')} class="inline-flex min-h-11 items-center hover:text-brand">{p.breadcrumb}</a></li>
@@ -49,9 +52,9 @@ const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d
         {d.tagline && <p class="mt-4 text-lg leading-relaxed text-ink"><Text text={d.tagline[lang]} /></p>}
         {d.description && <p class="mt-4 leading-relaxed text-muted"><Text text={d.description[lang]} /></p>}
 
-        {isRoasted && (
+        {d.features && (
           <ul class="mt-6 space-y-2 border-t border-line pt-6">
-            {s.roasted.features.map((f) => (
+            {d.features[lang].map((f) => (
               <li class="flex gap-3 leading-relaxed">
                 <svg class="mt-1 size-4 shrink-0 text-brand" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
                 <span><Text text={f} /></span>
@@ -61,16 +64,19 @@ const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d
         )}
 
         <dl class="mt-6 grid gap-4 border-t border-line pt-6 text-sm sm:grid-cols-2">
-          {isRoasted && (
-            <div>
-              <dt class="font-semibold">{s.roasted.uses}</dt>
-              <dd class="mt-1 text-muted">{s.roasted.usesList.join(' · ')}</dd>
+          {d.uses && (
+            <div class="sm:col-span-2">
+              <dt class="font-semibold">{p.uses}</dt>
+              <dd class="mt-1 text-muted">{d.uses[lang]}</dd>
             </div>
           )}
           {d.flavours && (
             <div>
               <dt class="font-semibold">{p.flavours}</dt>
-              <dd class="mt-1 text-muted">{d.flavours.map((f) => s.flavours[f] ?? f).join(' · ')}</dd>
+              <dd class="mt-1 text-muted">
+                {d.flavours.map((f) => s.flavours[f] ?? f).join(' · ')}
+                {d.flavoursVerify && <> <Text text={p.flavoursVerify} /></>}
+              </dd>
             </div>
           )}
           {d.markets && (
@@ -97,10 +103,10 @@ const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d
   <section class="border-t border-line py-12 sm:py-16" aria-labelledby="spec-title">
     <div class="container-x">
       <h2 id="spec-title" class="text-2xl font-bold">{p.specTitle}</h2>
-      {isRoasted && (
-        <dl class="mt-6 grid overflow-hidden rounded-lg border border-line bg-card sm:grid-cols-2 lg:grid-cols-3">
-          {s.roasted.overview.map((row) => (
-            <div class="border-b border-line p-4 sm:border-r">
+      {overview.length > 0 && (
+        <dl class="mt-6 grid overflow-hidden rounded-lg border border-line bg-card sm:grid-cols-2">
+          {overview.map((row) => (
+            <div class="-mb-px border-b border-line p-4 sm:odd:border-r">
               <dt class="text-sm text-muted">{row.k}</dt>
               <dd class="mt-1 font-medium"><Text text={row.v} /></dd>
             </div>
@@ -127,10 +133,10 @@ const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d
             return (
               <li class:list={[wide && 'md:col-span-2']}>
                 <figure>
-                  <div class:list={['overflow-hidden rounded-lg', wide ? 'bg-card' : 'aspect-[3/2]']}>
-                    <Photo name={file} alt={alt(file)} fit={wide ? 'contain' : 'cover'} widths={wide ? [800, 1340] : [500, 944]} sizes={wide ? '(min-width: 1216px) 1168px, 100vw' : '(min-width: 768px) 50vw, 100vw'} />
+                  <div class:list={['overflow-hidden rounded-lg', !wide && 'aspect-[3/2]']}>
+                    <Photo name={file} alt={alt(file)} fit={wide ? 'contain' : 'cover'} class={wide ? 'h-auto bg-card' : ''} widths={wide ? [800, 1340] : [500, 944]} sizes={wide ? '(min-width: 1216px) 1168px, 100vw' : '(min-width: 768px) 50vw, 100vw'} />
                   </div>
-                  {wide && isRoasted && <figcaption class="mt-2 text-sm text-muted"><Text text={s.roasted.packsCaption} /></figcaption>}
+                  {wide && <figcaption class="mt-2 text-sm text-muted"><Text text={s.roasted.packsCaption} /></figcaption>}
                 </figure>
               </li>
             );
@@ -145,7 +151,7 @@ const alt = (file: string) => (isRoasted ? s.roasted.alt[file] : undefined) ?? d
     <div class="container-x flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
       <div class="max-w-2xl">
         <h2 class="text-2xl font-bold">{s.contact.title}</h2>
-        <p class="mt-2 text-ink-muted">{s.contact.lead}</p>
+        <p class="mt-2 text-ink-muted"><Text text={s.contact.lead} /></p>
       </div>
       <div class="flex flex-col gap-3 sm:flex-row">
         <a href={sampleHref} class="btn btn-primary">{p.requestSample}</a>

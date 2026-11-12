@@ -34,7 +34,11 @@ Search the repo for `확인 필요` to see what is still open.
 
 ## Pages done
 
-- Home (`/en/`, `/ja/`, `/ko/`) — hero, figures, products, factory & quality, OEM steps, news, contact
-- Products list and detail (`/<lang>/products/`, `/<lang>/products/<id>/`)
+Languages: English (`/en/`), Japanese (`/ja/`), Korean (`/ko/`), Simplified Chinese (`/zh/`).
 
-Factory & Quality, OEM, News, Contact and About pages are next; for now the menu links to the matching Home sections.
+- Home — hero, figures, products, factory & quality, OEM steps, news, contact
+- Products list and detail (`/<lang>/products/`, `/<lang>/products/<id>/`)
+- Factory & Quality (`/<lang>/factory/`) — 11-step process, raw material, certifications
+- About (`/<lang>/about/`) — company, history, brands
+
+OEM, News and Contact live as Home sections for now. Plans for more languages: `docs/language-plan.md`.

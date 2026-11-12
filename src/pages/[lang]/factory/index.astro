@@ -1,0 +1,89 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Photo from '../../../components/Photo.astro';
+import Text from '../../../components/Text.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import { langs, t, localize, type Lang } from '../../../i18n/ui';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const s = t(lang);
+const f = s.factoryPage;
+// Photo 11 shows a customer's carton (brand not cleared for publication), so it is left out.
+const photos = [
+  'process-01-metal-detector.jpg', 'process-02-feeder.jpg', 'process-03-sorting.jpg', 'process-04-roasting.jpg',
+  'process-05-seasoning.jpg', 'process-06-counting.jpg', 'process-07-cutting.jpg', 'process-08-inner-pack.jpg',
+  'process-09-packing-line.jpg', 'process-10-outer-pack.jpg', undefined,
+];
+---
+<Base lang={lang} title={`${s.meta.factory} | Good&Well`} description={s.meta.factoryDescription} path="factory/">
+  <section class="border-b border-line bg-card">
+    <div class="container-x grid gap-8 py-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-14">
+      <div>
+        <p class="eyebrow">Factory &amp; Quality</p>
+        <h1 class="mt-2 text-3xl font-bold sm:text-4xl">{f.title}</h1>
+        <p class="mt-4 max-w-xl leading-relaxed text-muted">{f.lead}</p>
+      </div>
+      <div class="aspect-[16/9] overflow-hidden rounded-lg">
+        <Photo alt={f.title} pending={f.aerialPending} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16" aria-labelledby="process-title">
+    <div class="container-x">
+      <SectionHead id="process-title" title={f.processTitle} lead={f.processLead} />
+      <ol class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {f.steps.map((step, i) => (
+          <li class="overflow-hidden rounded-lg border border-line bg-card">
+            <div class="aspect-[4/3]">
+              <Photo name={photos[i]} alt={step.title} pending={f.stepPhotoPending} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+            </div>
+            <div class="p-5">
+              <p class="font-display text-sm font-semibold text-brand">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="mt-1 text-lg font-bold">{step.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-muted">{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-card py-12 sm:py-16" aria-labelledby="raw-title">
+    <div class="container-x">
+      <SectionHead id="raw-title" title={f.rawTitle} />
+      <dl class="mt-8 grid gap-6 md:grid-cols-3">
+        {f.raw.map((r) => (
+          <div class="border-t-2 border-ink pt-4">
+            <dt class="font-bold">{r.title}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-muted">{r.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="py-12 sm:py-16" aria-labelledby="cert-title">
+    <div class="container-x">
+      <SectionHead id="cert-title" title={f.certTitle} lead={f.certLead} />
+      <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {f.certs.map((c) => (
+          <li class="flex flex-col rounded-lg border border-line bg-card p-5">
+            <p class="font-display text-sm font-semibold text-brand">{c.year}</p>
+            <h3 class="mt-1 text-lg font-bold leading-snug">{c.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{c.note}</p>
+            <p class="mt-auto pt-4 text-xs"><Text text={f.validityPending} /></p>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <a href={`${localize(lang)}#contact`} class="btn btn-primary">{s.hero.ctaSample}</a>
+        <a href={localize(lang, 'products/')} class="btn btn-outline">{s.productsSection.viewAll}</a>
+      </div>
+    </div>
+  </section>
+</Base>

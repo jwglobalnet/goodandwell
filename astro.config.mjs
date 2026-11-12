@@ -9,7 +9,7 @@ export default defineConfig({
   trailingSlash: 'always',
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ja', 'ko'],
+    locales: ['en', 'ja', 'ko', 'zh'],
     routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false },
   },
   vite: { plugins: [tailwindcss()] },

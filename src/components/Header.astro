@@ -1,18 +1,18 @@
 ---
-import { languages, langs, t, localize, type Lang } from '../i18n/ui';
+import { languages, langs, langLabel, t, localize, type Lang } from '../i18n/ui';
 interface Props { lang: Lang; path: string }
 const { lang, path } = Astro.props;
 const s = t(lang);
 const home = localize(lang);
-// Factory, OEM, News and Contact point to Home sections until their own pages are built.
+// OEM, News and Contact point to Home sections until their own pages are built.
 const items = [
   { href: localize(lang, 'products/'), label: s.nav.products, key: 'products' },
-  { href: `${home}#factory`, label: s.nav.factory, key: 'factory' },
+  { href: localize(lang, 'factory/'), label: s.nav.factory, key: 'factory' },
   { href: `${home}#oem`, label: s.nav.oem, key: 'oem' },
+  { href: localize(lang, 'about/'), label: s.nav.about, key: 'about' },
   { href: `${home}#news`, label: s.nav.news, key: 'news' },
 ];
-const current = path.startsWith('products') ? 'products' : '';
-const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO' };
+const current = path.split('/')[0];
 ---
 <header class="sticky top-0 z-40 border-b border-line bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/85">
   <div class="container-x flex h-16 items-center justify-between gap-4">
@@ -20,7 +20,7 @@ const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO' };
       Good<span class="text-brand">&amp;</span>Well
     </a>
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+    <nav class="hidden items-center gap-0.5 xl:flex" aria-label="Main">
       {items.map((i) => (
         <a
           href={i.href}
@@ -53,7 +53,7 @@ const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO' };
       </ul>
       <a href={`${home}#contact`} class="btn btn-primary hidden md:inline-flex">{s.nav.contact}</a>
 
-      <details class="group relative lg:hidden">
+      <details class="group relative xl:hidden">
         <summary class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded border border-line px-3 text-sm font-semibold [&::-webkit-details-marker]:hidden">
           <span>{s.nav.menu}</span>
           <svg class="size-4 transition-transform group-open:rotate-180" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
@@ -66,9 +66,9 @@ const langLabel: Record<Lang, string> = { en: 'EN', ja: 'JA', ko: 'KO' };
               ))}
             </ul>
           </nav>
-          <ul class="mt-2 flex border-t border-line pt-2 sm:hidden" aria-label={s.nav.language}>
+          <ul class="mt-2 grid grid-cols-2 border-t border-line pt-2 sm:hidden" aria-label={s.nav.language}>
             {langs.map((l) => (
-              <li class="flex-1">
+              <li>
                 <a href={localize(l, path)} hreflang={l} lang={l}
                   class:list={['flex min-h-11 items-center justify-center rounded text-sm font-semibold no-underline', l === lang ? 'bg-paper text-brand' : 'text-muted']}
                   aria-current={l === lang ? 'true' : undefined}>{languages[l]}</a>
