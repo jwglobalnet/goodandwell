@@ -1,0 +1,84 @@
+{
+  "_note": "설명은 2013·2017 카탈로그 내용을 바탕으로 다시 쓴 초안. specs의 null과 [확인 필요]는 채워야 하는 값. status가 verify인 품목은 현재 취급 여부 확인 전까지 사이트에 노출하지 않는다.",
+  "products": [
+    {
+      "id": "roasted-seaweed",
+      "priority": 1,
+      "status": "active",
+      "images": ["roasted-sheets.jpg", "roasted-packs.jpg", "use-gimbap.jpg", "use-onigiri.jpg"],
+      "name": { "en": "Roasted Seaweed (Yaki Nori)", "ja": "焼き海苔", "ko": "구운김 (무조미)" },
+      "tagline": { "en": "Unseasoned. No oil, no salt. For sushi, hand rolls and gimbap.", "ja": "油も塩も使わない、寿司・手巻き・キンパ用の焼き海苔です。", "ko": "기름·소금 없이 구운 김. 스시, 핸드롤, 김밥용." },
+      "description": {
+        "en": "Made from laver harvested on the southern coast of Korea and roasted in a high-temperature kiln for a crisp bite. Available as full sheets and half sheets, packed to the count you need.",
+        "ja": "韓国南海岸で採れた原藻を高温の窯でパリッと焼き上げました。全形・半切をご希望の枚数で包装いたします。",
+        "ko": "남해안 원초를 고온에서 바삭하게 구웠습니다. 전장과 반장을 원하는 매수로 포장합니다."
+      },
+      "variants": [
+        { "label": "Full sheet, 10 sheets", "sheetSize": "[확인 필요: 약 19×21cm]", "netWeight": null, "perCarton": null, "shelfLife": null },
+        { "label": "Full sheet, 50 sheets", "sheetSize": "[확인 필요: 약 19×21cm]", "netWeight": null, "perCarton": null, "shelfLife": null },
+        { "label": "Half sheet, 20 sheets", "sheetSize": "[확인 필요: 약 19×10.5cm]", "netWeight": null, "perCarton": null, "shelfLife": null },
+        { "label": "Half sheet, 100 sheets", "sheetSize": "[확인 필요: 약 19×10.5cm]", "netWeight": null, "perCarton": null, "shelfLife": null }
+      ],
+      "markets": "Japan, France [확인 필요: 그 외]"
+    },
+    {
+      "id": "seasoned-snack",
+      "priority": 2,
+      "status": "active",
+      "name": { "en": "Seasoned Seaweed Snack Packs", "ja": "韓国のり お弁当サイズ", "ko": "조미김 (도시락김)" },
+      "tagline": { "en": "Traditional laver seasoned with sesame oil, perilla oil and salt. 3-pack and 12-pack.", "ja": "ごま油とえごま油で味付けした伝統の韓国のり。3パック・12パック。", "ko": "참기름·들기름으로 맛을 낸 재래김. 3봉, 12봉." },
+      "description": {
+        "en": "Our main product. Traditional laver is kept frozen after harvest to hold its flavour through the year, then seasoned and roasted at high temperature.",
+        "ja": "当社の主力製品です。冬に収穫した原藻を冷凍保管し、一年を通して変わらない風味でお届けします。",
+        "ko": "주력 제품. 겨울에 수확한 원초를 냉동 보관해 연중 같은 맛을 냅니다."
+      },
+      "flavours": ["Original", "Kimchi", "Wasabi"],
+      "variants": [{ "label": "3 packs", "netWeight": null, "perCarton": null, "shelfLife": null }, { "label": "12 packs", "netWeight": null, "perCarton": null, "shelfLife": null }]
+    },
+    {
+      "id": "seasoned-full-size",
+      "priority": 3,
+      "status": "active",
+      "name": { "en": "Full-size Seasoned Seaweed (Jaerae-gim, Dol-gim)", "ja": "味付け海苔 全形(在来海苔・岩海苔)", "ko": "전장 조미김 (재래김, 돌김)" },
+      "tagline": { "en": "Full sheets of traditional laver and rock laver, seasoned and roasted.", "ja": "在来海苔と岩海苔の全形を味付けして焼き上げました。", "ko": "재래김과 돌김 전장을 조미해 구웠습니다." },
+      "variants": [{ "label": "[확인 필요: 매수]", "netWeight": null, "perCarton": null, "shelfLife": null }]
+    },
+    {
+      "id": "seaweed-flakes",
+      "priority": 4,
+      "status": "active",
+      "name": { "en": "Seasoned Seaweed Flakes (Doljaban)", "ja": "ドルジャバン(ふりかけ海苔)", "ko": "돌자반 (김자반)" },
+      "tagline": { "en": "Crisp seasoned flakes to sprinkle over rice.", "ja": "ご飯にかけて食べる、香ばしい味付け海苔フレークです。", "ko": "밥에 뿌려 먹는 조미 김자반." },
+      "variants": [{ "label": "[확인 필요: 중량]", "netWeight": null, "perCarton": null, "shelfLife": null }]
+    },
+    {
+      "id": "premium-canister",
+      "priority": 5,
+      "status": "verify",
+      "name": { "en": "Premium Seasoned Seaweed in Canister", "ja": "プレミアム味付け海苔(缶入り)", "ko": "프리미엄 캔 조미김" },
+      "flavours": ["Original", "Kimchi", "Wasabi"],
+      "_verify": "seaVege 브랜드가 자사 것인지, 현재 생산 여부"
+    },
+    {
+      "id": "cut-wakame",
+      "priority": 6,
+      "status": "verify",
+      "name": { "en": "Dried Cut Wakame", "ja": "乾燥カットわかめ", "ko": "건미역 (컷미역)" },
+      "tagline": { "en": "Leaf-only wakame from Wando, dried and cut.", "ja": "莞島産わかめの葉の部分だけを乾燥させました。", "ko": "완도산 미역의 잎만 건조." }
+    },
+    {
+      "id": "hijiki",
+      "priority": 7,
+      "status": "verify",
+      "name": { "en": "Dried Hijiki", "ja": "ひじき", "ko": "톳" },
+      "tagline": { "en": "Hijiki from Jeju Island.", "ja": "済州島産のひじきです。", "ko": "제주산 톳." }
+    },
+    {
+      "id": "other-goods",
+      "priority": 8,
+      "status": "verify",
+      "name": { "en": "Other Korean Foods", "ja": "その他の韓国食品", "ko": "기타 취급 상품" },
+      "_verify": "유자차, 삼계탕, 떡볶이, 김말이, 냉면, 다시마. 제조가 아닌 취급 상품으로 보임. 현재 취급 품목만 남길 것"
+    }
+  ]
+}
