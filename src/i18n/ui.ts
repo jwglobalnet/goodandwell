@@ -68,7 +68,7 @@ const en = {
     { value: 'Since 2007', label: 'Own factory in Icheon, Korea, completed 2012' },
     { value: '90%+', label: 'Share of export in our business' },
     { value: 'Japan · France · Israel', label: 'Among our export markets' },
-    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: 'Quality and food safety certifications [확인 필요: FSSC·HACCP 갱신]' },
+    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: 'Quality and food safety certifications [확인 필요: HACCP 갱신]' },
   ],
   productsSection: {
     eyebrow: 'Products',
@@ -88,7 +88,7 @@ const en = {
       innerPack: 'Inner packing',
     },
     certTitle: 'Certifications',
-    certValue: 'ISO 9001:2015 (valid until Aug 2027), FSSC 22000, HACCP [확인 필요: FSSC·HACCP 갱신]',
+    certValue: 'ISO 9001:2015 (valid until Aug 2027), FSSC 22000, HACCP [확인 필요: HACCP 갱신]',
     more: 'See the whole process',
   },
   oem: {
@@ -214,7 +214,7 @@ const en = {
     certLead: 'Copies are available on request.',
     certs: [
       { name: 'ISO 9001:2015', note: 'Quality management system', year: '2012', detail: 'Korea Quality Assurance (KQA), No. KQA-Q122708. Scope: manufacture of processed seaweed (dried, roasted and seasoned laver).', valid: 'Valid until 24 Aug 2027' },
-      { name: 'FSSC 22000', note: 'Food safety management system (version 6)', year: '2020', detail: 'EUROCERT, No. 186KR/FSSC. Scope: roasting and seasoning of roasted seaweed and roasted seasoned seaweed packed in PE/PP.', valid: 'Valid until 12 Nov 2026 [확인 필요: FSSC 22000 유효기간 2026.11.12 — 갱신 인증서]' },
+      { name: 'FSSC 22000', note: 'Food safety management system (version 6)', year: '2020', detail: 'EUROCERT, No. 00.20.0060. Scope: roasting and seasoning of roasted seaweed and roasted seasoned seaweed packed in PE/PP.', valid: 'Valid until 16 Sep 2029' },
       { name: 'HACCP', note: 'Hazard Analysis and Critical Control Points', year: '2020', detail: 'Korea Agency of HACCP Accreditation and Services, No. 2020-3-1332. Product: seasoned laver. Critical control points: roasting, metal detection, camera-based foreign-matter sorting.', valid: 'Valid until 15 Dec 2026 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: 'Approved exporter (product-specific)', note: 'Korea Customs Service — origin declarations under trade agreements', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: 'Registered fishery products processing facility', note: 'National Fishery Products Quality Management Service, for export to China', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
@@ -300,7 +300,7 @@ const ja: Dict = {
     { value: '2007年創業', label: '利川の自社工場(2012年竣工)' },
     { value: '90%以上', label: '売上に占める輸出の割合' },
     { value: '日本・フランス・イスラエル', label: '主な輸出先の一部' },
-    { value: 'ISO 9001・FSSC 22000・HACCP', label: '品質・食品安全の認証 [확인 필요: FSSC·HACCP 갱신]' },
+    { value: 'ISO 9001・FSSC 22000・HACCP', label: '品質・食品安全の認証 [확인 필요: HACCP 갱신]' },
   ],
   productsSection: {
     eyebrow: 'Products',
@@ -320,7 +320,7 @@ const ja: Dict = {
       innerPack: '個包装',
     },
     certTitle: '認証',
-    certValue: 'ISO 9001:2015(2027年8月まで有効)、FSSC 22000、HACCP [확인 필요: FSSC·HACCP 갱신]',
+    certValue: 'ISO 9001:2015(2027年8月まで有効)、FSSC 22000、HACCP [확인 필요: HACCP 갱신]',
     more: '製造工程をすべて見る',
   },
   oem: {
@@ -438,7 +438,7 @@ const ja: Dict = {
     certLead: '認証書の写しはご要望に応じてお送りいたします。',
     certs: [
       { name: 'ISO 9001:2015', note: '品質マネジメントシステム', year: '2012', detail: '韓国品質保証院(KQA)、認証番号 KQA-Q122708。適用範囲：海藻加工品(乾海苔、焼き海苔、味付け海苔)の製造。', valid: '有効期限 2027年8月24日' },
-      { name: 'FSSC 22000', note: '食品安全マネジメントシステム(バージョン6)', year: '2020', detail: 'EUROCERT、登録番号 186KR/FSSC。適用範囲：PE・PP包装の焼き海苔および味付け海苔の製造(焼き・味付け)。', valid: '有効期限 2026年11月12日 [확인 필요: FSSC 22000 유효기간 2026.11.12 — 갱신 인증서]' },
+      { name: 'FSSC 22000', note: '食品安全マネジメントシステム(バージョン6)', year: '2020', detail: 'EUROCERT、登録番号 00.20.0060。適用範囲：PE・PP包装の焼き海苔および味付け海苔の製造(焼き・味付け)。', valid: '有効期限 2029年9月16日' },
       { name: 'HACCP', note: '危害分析重要管理点', year: '2020', detail: '韓国食品安全管理認証院、第2020-3-1332号。品目：味付け海苔。重要管理点：加熱(焼き)、金属探知、画像式異物選別。', valid: '有効期限 2026年12月15日 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '品目別原産地認定輸出者', note: '韓国関税庁 — 協定に基づく原産地申告', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '水産物生産・加工施設登録', note: '国立水産物品質管理院(中国向け輸出)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
@@ -521,7 +521,7 @@ const ko: Dict = {
     { value: '2007년 설립', label: '이천 자체 공장 (2012년 준공)' },
     { value: '90% 이상', label: '수출 비중' },
     { value: '일본 · 프랑스 · 이스라엘', label: '주요 수출국 중 일부' },
-    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: '품질·식품안전 인증 [확인 필요: FSSC·HACCP 갱신]' },
+    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: '품질·식품안전 인증 [확인 필요: HACCP 갱신]' },
   ],
   productsSection: {
     eyebrow: 'Products',
@@ -541,7 +541,7 @@ const ko: Dict = {
       innerPack: '개별 포장',
     },
     certTitle: '인증',
-    certValue: 'ISO 9001:2015 (2027년 8월까지 유효), FSSC 22000, HACCP [확인 필요: FSSC·HACCP 갱신]',
+    certValue: 'ISO 9001:2015 (2027년 8월까지 유효), FSSC 22000, HACCP [확인 필요: HACCP 갱신]',
     more: '전체 공정 보기',
   },
   oem: {
@@ -659,7 +659,7 @@ const ko: Dict = {
     certLead: '인증서 사본은 요청하시면 보내 드립니다.',
     certs: [
       { name: 'ISO 9001:2015', note: '품질경영시스템', year: '2012', detail: '한국품질보증원(KQA), 인증번호 KQA-Q122708. 인증범위: 해조류가공품(마른김, 구운김, 조미김) 제조.', valid: '유효기간 2027년 8월 24일까지' },
-      { name: 'FSSC 22000', note: '식품안전경영시스템 (버전 6)', year: '2020', detail: 'EUROCERT, 등록번호 186KR/FSSC. 범위: PE·PP 포장 조미김 및 구운김 생산(굽기, 조미).', valid: '유효기간 2026년 11월 12일까지 [확인 필요: FSSC 22000 유효기간 2026.11.12 — 갱신 인증서]' },
+      { name: 'FSSC 22000', note: '식품안전경영시스템 (버전 6)', year: '2020', detail: 'EUROCERT, 등록번호 00.20.0060. 범위: PE·PP 포장 조미김 및 구운김 생산(굽기, 조미).', valid: '유효기간 2029년 9월 16일까지' },
       { name: 'HACCP', note: '식품안전관리인증기준', year: '2020', detail: '한국식품안전관리인증원, 제2020-3-1332호. 식품 종류: 조미김. 중요관리점: 가열(구이), 금속검출, 영상이물선별.', valid: '유효기간 2026년 12월 15일까지 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '품목별 원산지인증수출자', note: '관세청 — 협정에 따른 원산지 증명', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '수산물 생산·가공시설 등록', note: '국립수산물품질관리원 (중국 수출)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
@@ -741,7 +741,7 @@ const zh: Dict = {
     { value: '2007年创立', label: '利川自有工厂（2012年竣工）' },
     { value: '90%以上', label: '出口占销售额比例' },
     { value: '日本 · 法国 · 以色列', label: '部分出口市场' },
-    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: '质量与食品安全认证 [확인 필요: FSSC·HACCP 갱신]' },
+    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: '质量与食品安全认证 [확인 필요: HACCP 갱신]' },
   ],
   productsSection: {
     eyebrow: 'Products',
@@ -761,7 +761,7 @@ const zh: Dict = {
       innerPack: '内包装',
     },
     certTitle: '认证',
-    certValue: 'ISO 9001:2015（有效期至2027年8月）、FSSC 22000、HACCP [확인 필요: FSSC·HACCP 갱신]',
+    certValue: 'ISO 9001:2015（有效期至2027年8月）、FSSC 22000、HACCP [확인 필요: HACCP 갱신]',
     more: '查看全部工序',
   },
   oem: {
@@ -879,7 +879,7 @@ const zh: Dict = {
     certLead: '如需认证证书副本，请与我们联系。',
     certs: [
       { name: 'ISO 9001:2015', note: '质量管理体系', year: '2012', detail: '韩国品质保证院（KQA），证书编号 KQA-Q122708。认证范围：海藻加工品（干紫菜、烤紫菜、调味海苔）的生产。', valid: '有效期至2027年8月24日' },
-      { name: 'FSSC 22000', note: '食品安全管理体系（第6版）', year: '2020', detail: 'EUROCERT，注册编号 186KR/FSSC。范围：PE/PP包装的烤紫菜及调味海苔的生产（烤制、调味）。', valid: '有效期至2026年11月12日 [확인 필요: FSSC 22000 유효기간 2026.11.12 — 갱신 인증서]' },
+      { name: 'FSSC 22000', note: '食品安全管理体系（第6版）', year: '2020', detail: 'EUROCERT，注册编号 00.20.0060。范围：PE/PP包装的烤紫菜及调味海苔的生产（烤制、调味）。', valid: '有效期至2029年9月16日' },
       { name: 'HACCP', note: '危害分析与关键控制点', year: '2020', detail: '韩国食品安全管理认证院，第2020-3-1332号。食品类别：调味海苔。关键控制点：加热（烤制）、金属检测、图像异物筛选。', valid: '有效期至2026年12月15日 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '品目别原产地认证出口商', note: '韩国关税厅 — 依据自贸协定出具原产地声明', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '水产品生产加工设施登记', note: '韩国国立水产品品质管理院（对华出口）', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
@@ -963,7 +963,7 @@ const fr: Dict = {
     { value: 'Depuis 2007', label: 'Usine propre à Icheon, achevée en 2012' },
     { value: '90 %+', label: 'Part de l’export dans notre activité' },
     { value: 'Japon · France · Israël', label: 'Parmi nos marchés export' },
-    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: 'Certifications qualité et sécurité alimentaire [확인 필요: FSSC·HACCP 갱신]' },
+    { value: 'ISO 9001 · FSSC 22000 · HACCP', label: 'Certifications qualité et sécurité alimentaire [확인 필요: HACCP 갱신]' },
   ],
   productsSection: {
     eyebrow: 'Produits',
@@ -983,7 +983,7 @@ const fr: Dict = {
       innerPack: 'Emballage individuel',
     },
     certTitle: 'Certifications',
-    certValue: 'ISO 9001:2015 (valable jusqu’en août 2027), FSSC 22000, HACCP [확인 필요: FSSC·HACCP 갱신]',
+    certValue: 'ISO 9001:2015 (valable jusqu’en août 2027), FSSC 22000, HACCP [확인 필요: HACCP 갱신]',
     more: 'Voir tout le processus',
   },
   oem: {
@@ -1101,7 +1101,7 @@ const fr: Dict = {
     certLead: 'Copies disponibles sur demande.',
     certs: [
       { name: 'ISO 9001:2015', note: 'Système de management de la qualité', year: '2012', detail: 'Korea Quality Assurance (KQA), n° KQA-Q122708. Périmètre : fabrication d’algues transformées (séchées, grillées et assaisonnées).', valid: 'Valable jusqu’au 24 août 2027' },
-      { name: 'FSSC 22000', note: 'Système de management de la sécurité des denrées alimentaires (version 6)', year: '2020', detail: 'EUROCERT, n° 186KR/FSSC. Périmètre : grillage et assaisonnement d’algues grillées et d’algues assaisonnées, conditionnées en PE/PP.', valid: 'Valable jusqu’au 12 novembre 2026 [확인 필요: FSSC 22000 유효기간 2026.11.12 — 갱신 인증서]' },
+      { name: 'FSSC 22000', note: 'Système de management de la sécurité des denrées alimentaires (version 6)', year: '2020', detail: 'EUROCERT, n° 00.20.0060. Périmètre : grillage et assaisonnement d’algues grillées et d’algues assaisonnées, conditionnées en PE/PP.', valid: 'Valable jusqu’au 16 septembre 2029' },
       { name: 'HACCP', note: 'Analyse des dangers et points critiques pour leur maîtrise', year: '2020', detail: 'Korea Agency of HACCP Accreditation and Services, n° 2020-3-1332. Produit : algues assaisonnées. Points critiques : grillage, détection des métaux, tri optique des corps étrangers.', valid: 'Valable jusqu’au 15 décembre 2026 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: 'Exportateur agréé (par produit)', note: 'Service des douanes coréen — déclarations d’origine au titre des accords commerciaux, dont l’accord UE–Corée', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: 'Établissement de transformation enregistré', note: 'Service national de contrôle de la qualité des produits de la pêche (export vers la Chine)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
