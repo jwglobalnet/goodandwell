@@ -21,23 +21,22 @@ const news = (await getCollection('news', (n) => n.data.lang === newsLang(lang))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// Background video in /public/media. TEST: a free stock clip (sushi rolling) to try the effect;
-// replace with the company's own factory footage before launch, or set to null for the photo.
+// Background video in /public/media: a 12-second edit of the company's factory video
+// (drone shots, roasting, seasoning, trays, packing), cropped clear of on-screen text and logos.
 const heroVideo: { mp4: string; webm?: string; poster: string; test?: boolean } | null = {
-  mp4: '/media/hero-sushi-test.mp4',
-  webm: '/media/hero-sushi-test.webm',
-  poster: '/media/hero-sushi-test-poster.jpg',
-  test: true,
+  mp4: '/media/hero-factory.mp4',
+  webm: '/media/hero-factory.webm',
+  poster: '/media/hero-factory-poster.jpg',
 };
 // Set to a file in /public when the new catalog PDF is ready. The 2017 catalog is not used
 // (it contains health-effect copy and certification claims that are not confirmed).
 const catalogPdf: string | null = null;
 
 const factoryPhotos = [
-  { file: 'process-03-sorting.jpg', label: s.factory.steps.sorting },
-  { file: 'process-04-roasting.jpg', label: s.factory.steps.roasting },
-  { file: 'process-07-cutting.jpg', label: s.factory.steps.cutting },
-  { file: 'process-08-inner-pack.jpg', label: s.factory.steps.innerPack },
+  { file: 'factory-video/step-02.jpg', label: s.factory.steps.sorting },
+  { file: 'factory-video/step-03.jpg', label: s.factory.steps.roasting },
+  { file: 'factory-video/step-07.jpg', label: s.factory.steps.cutting },
+  { file: 'factory-video/step-09.jpg', label: s.factory.steps.innerPack },
 ];
 ---
 <Base lang={lang} title={s.meta.home} description={s.meta.homeDescription}>
