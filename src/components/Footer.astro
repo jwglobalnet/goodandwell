@@ -4,6 +4,8 @@ import { t, localize, company, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const s = t(lang);
+// The site was first published in 2014 (goodandwell.co.kr); the end year follows the build date.
+const firstYear = 2014;
 const year = new Date().getFullYear();
 ---
 <footer class="bg-ink text-ink-muted">
@@ -42,7 +44,7 @@ const year = new Date().getFullYear();
   </div>
   <div class="border-t border-white/10">
     <div class="container-x flex flex-col gap-2 py-5 text-xs sm:flex-row sm:items-center sm:justify-between">
-      <p>© {year} Jaewon Global Net. All rights reserved.</p>
+      <p>© {firstYear}–{year} Jaewon Global Net. All rights reserved.</p>
       <p><Text text={s.footer.notice} /></p>
     </div>
   </div>
