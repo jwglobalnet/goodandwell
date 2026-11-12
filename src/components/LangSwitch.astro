@@ -7,13 +7,13 @@ const { lang, path } = Astro.props;
 ---
 <details class="group/lang relative" data-lang-switch>
   <summary
-    class="flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded px-2.5 text-sm font-semibold text-ink hover:text-brand [&::-webkit-details-marker]:hidden"
+    class="flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded px-2 text-sm font-semibold text-ink hover:text-brand [&::-webkit-details-marker]:hidden"
     aria-label={`${t(lang).nav.language}: ${languages[lang]}`}
   >
     <svg class="size-[18px] text-muted" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <circle cx="10" cy="10" r="7.5" /><path d="M2.5 10h15M10 2.5c2.2 2.3 3.2 4.8 3.2 7.5s-1 5.2-3.2 7.5M10 2.5C7.8 4.8 6.8 7.3 6.8 10s1 5.2 3.2 7.5" />
     </svg>
-    <span lang={htmlLang[lang]}>{languages[lang]}</span>
+    <span lang={htmlLang[lang]} class="max-[359px]:sr-only">{languages[lang]}</span>
     <svg class="size-3.5 transition-transform group-open/lang:rotate-180" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.75" /></svg>
   </summary>
   <ul class="absolute right-0 z-50 mt-2 w-44 rounded-md border border-line bg-card p-1.5 shadow-lg">

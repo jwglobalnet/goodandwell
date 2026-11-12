@@ -26,6 +26,7 @@ npm run check    # type check
 | Products and spec tables | `content/products.json` (`status: "verify"` items are hidden) |
 | News (`title`, `date`, `lang`, `summary`) | `content/news/<lang>/*.md` |
 | Photos | `assets/` (optimised at build time) |
+| Logos (SVG, converted from the company's Illustrator files) | `public/brand/` |
 | Hero video / catalog PDF slots | `heroVideo`, `catalogPdf` in `src/pages/[lang]/index.astro` |
 | Spec sheet PDF per product | `specSheet` in `content/products.json` (file in `public/`) |
 

@@ -16,9 +16,9 @@ const items = [
 const current = path.split('/')[0];
 ---
 <header class="sticky top-0 z-40 border-b border-line bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/85">
-  <div class="container-x flex h-16 items-center justify-between gap-4">
-    <a href={home} class="flex min-h-11 items-center font-display text-xl font-bold tracking-tight text-ink no-underline" aria-label="Good&Well home">
-      Good<span class="text-brand">&amp;</span>Well
+  <div class="container-x flex h-16 items-center justify-between gap-2">
+    <a href={home} class="flex min-h-11 shrink-0 items-center no-underline">
+      <img src="/brand/goodandwell.svg" alt="Good&Well" width="139" height="34" class="h-7 w-auto sm:h-[34px]" />
     </a>
 
     <nav class="hidden items-center gap-0.5 xl:flex" aria-label="Main">
@@ -34,7 +34,7 @@ const current = path.split('/')[0];
       ))}
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1 sm:gap-2">
       <LangSwitch lang={lang} path={path} />
       <a href={`${home}#contact`} class="btn btn-primary hidden md:inline-flex">{s.nav.contact}</a>
 

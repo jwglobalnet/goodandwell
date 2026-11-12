@@ -11,7 +11,8 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const s = t(lang);
 const a = s.aboutPage;
-// ISO 9001 (2012) is left out of the history until the certificate is confirmed as current.
+// Logos converted from the company's Illustrator originals. Other brand logos are still to come.
+const brandLogo: Record<string, string> = { 'Good&Well': '/brand/goodandwell.svg' };
 ---
 <Base lang={lang} title={`${s.meta.about} | Good&Well`} description={s.meta.aboutDescription} path="about/">
   <section class="border-b border-line bg-card">
@@ -28,6 +29,7 @@ const a = s.aboutPage;
         {a.intro.map((para) => <p><Text text={para} /></p>)}
       </div>
       <div>
+        <img src="/brand/jaewon-global-net.svg" alt="Jaewon Global Net" width="230" height="40" class="mb-6 h-10 w-auto" loading="lazy" />
         <h2 class="text-lg font-bold">{a.factsTitle}</h2>
         <dl class="mt-4 divide-y divide-line rounded-lg border border-line bg-card text-sm">
           {a.facts.map((f) => (
@@ -68,9 +70,15 @@ const a = s.aboutPage;
       <ul class="mt-8 grid gap-5 md:grid-cols-3">
         {a.brands.map((b) => (
           <li class="flex flex-col rounded-lg border border-line bg-card">
-            <div class="flex aspect-[5/2] items-center justify-center rounded-t-lg bg-photo p-4 text-center text-xs">
-              <Text text={a.logoPending} />
-            </div>
+            {brandLogo[b.name] ? (
+              <div class="flex aspect-[5/2] items-center justify-center rounded-t-lg border-b border-line bg-card p-6">
+                <img src={brandLogo[b.name]} alt={b.name} class="h-auto max-h-20 w-full max-w-64" loading="lazy" />
+              </div>
+            ) : (
+              <div class="flex aspect-[5/2] items-center justify-center rounded-t-lg bg-photo p-4 text-center text-xs">
+                <Text text={a.logoPending} />
+              </div>
+            )}
             <div class="p-5">
               <h3 class="text-xl font-bold">{b.name}</h3>
               <p class="text-sm text-muted">{b.sub}</p>
