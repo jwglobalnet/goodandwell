@@ -21,12 +21,12 @@ const news = (await getCollection('news', (n) => n.data.lang === newsLang(lang))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-// Background video in /public/media. TEST: a free stock clip (abstract waves) to try the effect;
+// Background video in /public/media. TEST: a free stock clip (sushi rolling) to try the effect;
 // replace with the company's own factory footage before launch, or set to null for the photo.
 const heroVideo: { mp4: string; webm?: string; poster: string; test?: boolean } | null = {
-  mp4: '/media/hero-test.mp4',
-  webm: '/media/hero-test.webm',
-  poster: '/media/hero-test-poster.jpg',
+  mp4: '/media/hero-sushi-test.mp4',
+  webm: '/media/hero-sushi-test.webm',
+  poster: '/media/hero-sushi-test-poster.jpg',
   test: true,
 };
 // Set to a file in /public when the new catalog PDF is ready. The 2017 catalog is not used
@@ -45,7 +45,7 @@ const factoryPhotos = [
   <section class="relative isolate overflow-hidden bg-ink text-white" aria-labelledby="hero-title">
     <div class="absolute inset-0 -z-10">
       {heroVideo ? (
-        <video class="h-full w-full object-cover opacity-25" autoplay muted loop playsinline preload="auto" poster={heroVideo.poster} aria-hidden="true" data-hero-video>
+        <video class="h-full w-full object-cover opacity-[0.22]" autoplay muted loop playsinline preload="auto" poster={heroVideo.poster} aria-hidden="true" data-hero-video>
           {heroVideo.webm && <source src={heroVideo.webm} type="video/webm" />}
           <source src={heroVideo.mp4} type="video/mp4" />
         </video>
