@@ -148,7 +148,7 @@ const en = {
   },
   productPage: {
     title: 'Products',
-    lead: 'Roasted and seasoned seaweed made in our factory in Korea. Packs and specifications can be adjusted for your market.',
+    lead: 'Roasted and seasoned seaweed from our factory in Korea, plus dried wakame and citron tea. Packs and specifications can be adjusted for your market.',
     breadcrumb: 'Products',
     specTitle: 'Specifications',
     specCols: {
@@ -218,6 +218,7 @@ const en = {
       { name: 'HACCP', note: 'Hazard Analysis and Critical Control Points', year: '2020', detail: 'Korea Agency of HACCP Accreditation and Services, No. 2020-3-1332. Product: seasoned laver. Critical control points: roasting, metal detection, camera-based foreign-matter sorting.', valid: 'Valid until 15 Dec 2026 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: 'Approved exporter (product-specific)', note: 'Korea Customs Service — origin declarations under trade agreements', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: 'Registered fishery products processing facility', note: 'National Fishery Products Quality Management Service, for export to China', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
+      { name: 'Superior Taste Award', note: 'International Taste Institute (iTQi), Brussels', year: '[확인 필요: 수상 연도]', detail: 'Shown in our 2026 catalog. [확인 필요: 수상 제품·별 개수]', valid: '' },
     ],
     validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
   },
@@ -372,7 +373,7 @@ const ja: Dict = {
   footer: { brands: 'ブランド', company: '会社', notice: '試験公開中です。一部の数値は確認中です。' },
   productPage: {
     title: '商品一覧',
-    lead: '韓国の自社工場で製造する焼き海苔と味付け海苔です。内容量や包装は、販売先に合わせてご相談いただけます。',
+    lead: '韓国の自社工場で製造する焼き海苔・味付け海苔のほか、乾燥わかめ、ゆず茶も取り扱っています。内容量や包装は、販売先に合わせてご相談いただけます。',
     breadcrumb: '商品',
     specTitle: '商品規格',
     specCols: {
@@ -442,6 +443,7 @@ const ja: Dict = {
       { name: 'HACCP', note: '危害分析重要管理点', year: '2020', detail: '韓国食品安全管理認証院、第2020-3-1332号。品目：味付け海苔。重要管理点：加熱(焼き)、金属探知、画像式異物選別。', valid: '有効期限 2026年12月15日 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '品目別原産地認定輸出者', note: '韓国関税庁 — 協定に基づく原産地申告', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '水産物生産・加工施設登録', note: '国立水産物品質管理院(中国向け輸出)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
+      { name: 'Superior Taste Award(優秀味覚賞)', note: '国際味覚審査機構(iTQi、ブリュッセル)', year: '[확인 필요: 수상 연도]', detail: '2026年版カタログ掲載。[확인 필요: 수상 제품·별 개수]', valid: '' },
     ],
     validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
   },
@@ -593,7 +595,7 @@ const ko: Dict = {
   footer: { brands: '브랜드', company: '회사', notice: '시험판입니다. 일부 수치는 확인 중입니다.' },
   productPage: {
     title: '제품',
-    lead: '이천 공장에서 만드는 구운김과 조미김입니다. 중량과 포장은 판매처에 맞춰 조정할 수 있습니다.',
+    lead: '이천 공장에서 만드는 구운김·조미김과 건미역, 유자차입니다. 중량과 포장은 판매처에 맞춰 조정할 수 있습니다.',
     breadcrumb: '제품',
     specTitle: '제품 규격',
     specCols: {
@@ -663,6 +665,7 @@ const ko: Dict = {
       { name: 'HACCP', note: '식품안전관리인증기준', year: '2020', detail: '한국식품안전관리인증원, 제2020-3-1332호. 식품 종류: 조미김. 중요관리점: 가열(구이), 금속검출, 영상이물선별.', valid: '유효기간 2026년 12월 15일까지 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '품목별 원산지인증수출자', note: '관세청 — 협정에 따른 원산지 증명', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '수산물 생산·가공시설 등록', note: '국립수산물품질관리원 (중국 수출)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
+      { name: 'Superior Taste Award (국제 우수 미각상)', note: '국제미각평가원(iTQi), 벨기에 브뤼셀', year: '[확인 필요: 수상 연도]', detail: '2026 카탈로그에 실린 수상 내역. [확인 필요: 수상 제품·별 개수]', valid: '' },
     ],
     validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
   },
@@ -813,7 +816,7 @@ const zh: Dict = {
   footer: { brands: '品牌', company: '公司', notice: '网站试运行中，部分数据仍在确认。' },
   productPage: {
     title: '产品',
-    lead: '在韩国自有工厂生产的烤紫菜和调味海苔。包装和规格可根据销售市场调整。',
+    lead: '韩国自有工厂生产的烤紫菜、调味海苔，以及干裙带菜和柚子茶。包装和规格可根据销售市场调整。',
     breadcrumb: '产品',
     specTitle: '产品规格',
     specCols: {
@@ -883,6 +886,7 @@ const zh: Dict = {
       { name: 'HACCP', note: '危害分析与关键控制点', year: '2020', detail: '韩国食品安全管理认证院，第2020-3-1332号。食品类别：调味海苔。关键控制点：加热（烤制）、金属检测、图像异物筛选。', valid: '有效期至2026年12月15日 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: '品目别原产地认证出口商', note: '韩国关税厅 — 依据自贸协定出具原产地声明', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: '水产品生产加工设施登记', note: '韩国国立水产品品质管理院（对华出口）', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
+      { name: 'Superior Taste Award（顶级美味奖）', note: '国际风味暨品质评鉴所（iTQi，布鲁塞尔）', year: '[확인 필요: 수상 연도]', detail: '刊载于2026年版产品目录。[확인 필요: 수상 제품·별 개수]', valid: '' },
     ],
     validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
   },
@@ -1035,7 +1039,7 @@ const fr: Dict = {
   footer: { brands: 'Marques', company: 'Société', notice: 'Version de test. Certaines données sont en cours de vérification.' },
   productPage: {
     title: 'Produits',
-    lead: 'Algues grillées et assaisonnées fabriquées dans notre usine en Corée. Formats et caractéristiques adaptables à votre marché.',
+    lead: 'Algues grillées et assaisonnées de notre usine en Corée, ainsi que wakame séché et thé au yuzu. Formats et caractéristiques adaptables à votre marché.',
     breadcrumb: 'Produits',
     specTitle: 'Caractéristiques',
     specCols: {
@@ -1105,6 +1109,7 @@ const fr: Dict = {
       { name: 'HACCP', note: 'Analyse des dangers et points critiques pour leur maîtrise', year: '2020', detail: 'Korea Agency of HACCP Accreditation and Services, n° 2020-3-1332. Produit : algues assaisonnées. Points critiques : grillage, détection des métaux, tri optique des corps étrangers.', valid: 'Valable jusqu’au 15 décembre 2026 [확인 필요: HACCP 유효기간 2026.12.15 — 갱신 여부]' },
       { name: 'Exportateur agréé (par produit)', note: 'Service des douanes coréen — déclarations d’origine au titre des accords commerciaux, dont l’accord UE–Corée', year: '2022', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
       { name: 'Établissement de transformation enregistré', note: 'Service national de contrôle de la qualité des produits de la pêche (export vers la Chine)', year: '2013', detail: '', valid: '[확인 필요: 현재 유효 여부·유효기간]' },
+      { name: 'Superior Taste Award', note: 'International Taste Institute (iTQi), Bruxelles', year: '[확인 필요: 수상 연도]', detail: 'Présenté dans notre catalogue 2026. [확인 필요: 수상 제품·별 개수]', valid: '' },
     ],
     validityPending: '[확인 필요: 현재 유효 여부·유효기간]',
   },

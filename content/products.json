@@ -1,5 +1,5 @@
 {
-  "_note": "설명·규격은 Product_Catalog_3.xlsx(최신 제품 카탈로그)와 2021 회사소개서를 우선으로, 2013·2017 카탈로그를 보조로 정리. status가 verify인 품목은 현재 취급 여부 확인 전까지 사이트에 노출하지 않는다. 텍스트 필드는 en/ja/ko/zh 객체. 규격 필드: sheetSize, netWeight, perCarton(박스 입수), containerLoad(컨테이너 적재), shelfLife. null과 [확인 필요]는 화면에 노란 표시로 나간다.",
+  "_note": "설명·규격은 Product_Catalog_3.xlsx(최신 제품 카탈로그)와 2021 회사소개서를 우선으로, 2013·2017 카탈로그를 보조로 정리. status가 verify인 품목은 현재 취급 여부 확인 전까지 사이트에 노출하지 않는다. 텍스트 필드는 en/ja/ko/zh 객체. 규격 필드: sheetSize, netWeight, perCarton(박스 입수), containerLoad(컨테이너 적재), shelfLife. null과 [확인 필요]는 화면에 노란 표시로 나간다. 2026-11 인쇄 카탈로그(GoodandWell-Catalog-2026.pdf) 기준으로 품목·규격 갱신.",
   "products": [
     {
       "id": "roasted-seaweed",
@@ -7,6 +7,7 @@
       "status": "active",
       "images": [
         "roasted-sheets.jpg",
+        "catalog-2026/roasted-styled.jpg",
         "roasted-packs.jpg",
         "use-gimbap.jpg",
         "use-onigiri.jpg"
@@ -222,9 +223,7 @@
         "fr": "Notre produit phare. Le Jaerae-gim, algue traditionnelle de la mer de l’Ouest, est récolté une fois par an en hiver et conservé à −23 °C pour garder la même saveur toute l’année. Il est légèrement assaisonné à l’huile de sésame puis grillé à haute température ; le sel de bambou lui donne un goût net, sans effet gras."
       },
       "flavours": [
-        "Original",
-        "Kimchi",
-        "Wasabi"
+        "Original"
       ],
       "variants": [
         {
@@ -235,7 +234,13 @@
             "zh": "3包装",
             "fr": "Lot de 3"
           },
-          "netWeight": null,
+          "netWeight": {
+            "en": "3 g / 3.5 g / 4 g / 4.5 g / 5 g per pack",
+            "fr": "3 g / 3,5 g / 4 g / 4,5 g / 5 g par sachet",
+            "ja": "1袋 3g / 3.5g / 4g / 4.5g / 5g",
+            "ko": "1봉 3g / 3.5g / 4g / 4.5g / 5g",
+            "zh": "每小包 3g / 3.5g / 4g / 4.5g / 5g"
+          },
           "perCarton": null,
           "containerLoad": null,
           "shelfLife": null
@@ -249,11 +254,11 @@
             "fr": "Lot de 12"
           },
           "netWeight": {
-            "en": "3.5 g / 4 g / 4.5 g per pack",
-            "ja": "1袋 3.5g / 4g / 4.5g",
-            "ko": "1봉 3.5g / 4g / 4.5g",
-            "zh": "每小包 3.5g / 4g / 4.5g",
-            "fr": "3,5 g / 4 g / 4,5 g par sachet"
+            "en": "3 g / 3.5 g / 4 g / 4.5 g / 5 g per pack",
+            "fr": "3 g / 3,5 g / 4 g / 4,5 g / 5 g par sachet",
+            "ja": "1袋 3g / 3.5g / 4g / 4.5g / 5g",
+            "ko": "1봉 3g / 3.5g / 4g / 4.5g / 5g",
+            "zh": "每小包 3g / 3.5g / 4g / 4.5g / 5g"
           },
           "perCarton": "[확인 필요: 12봉 묶음 × 12]",
           "containerLoad": {
@@ -272,7 +277,6 @@
           }
         }
       ],
-      "flavoursVerify": true,
       "ingredients": {
         "en": "Laver, corn oil, salt, sesame oil, bamboo salt",
         "ja": "海苔、コーン油、食塩、ごま油、竹塩",
@@ -288,11 +292,11 @@
         "fr": "Jaerae-gim de la mer de l’Ouest (Corée), conservé à −23 °C"
       },
       "uses": {
-        "en": "With rice · As a snack · With drinks",
-        "ja": "ご飯のお供・おやつ・おつまみ",
-        "ko": "밥반찬 · 간식 · 안주",
-        "zh": "配米饭 · 零食 · 下酒菜",
-        "fr": "Avec du riz · En snack · À l’apéritif"
+        "en": "With rice · In rice balls and triangle kimbap · As a snack · With drinks",
+        "fr": "Avec du riz · En onigiri et kimbap triangle · En snack · À l’apéritif",
+        "ja": "ご飯のお供・おにぎり、三角キンパ・おやつ・おつまみ",
+        "ko": "밥반찬 · 주먹밥·삼각김밥 · 간식 · 안주",
+        "zh": "配米饭 · 饭团、三角紫菜包饭 · 零食 · 下酒菜"
       },
       "markets": {
         "en": "Japan, Mongolia, Australia, USA, Vietnam [확인 필요: 2021년 자료 기준]",
@@ -300,7 +304,12 @@
         "ko": "일본, 몽골, 호주, 미국, 베트남 [확인 필요: 2021년 자료 기준]",
         "zh": "日本、蒙古、澳大利亚、美国、越南 [확인 필요: 2021년 자료 기준]",
         "fr": "Japon, Mongolie, Australie, États-Unis, Vietnam [확인 필요: 2021년 자료 기준]"
-      }
+      },
+      "images": [
+        "catalog-2026/seasoned-3p.jpg",
+        "catalog-2026/seasoned-12p.jpg",
+        "catalog-2026/lifestyle-right.jpg"
+      ]
     },
     {
       "id": "seasoned-full-size",
@@ -334,6 +343,9 @@
           "containerLoad": null,
           "shelfLife": null
         }
+      ],
+      "images": [
+        "catalog-2026/lifestyle-left.jpg"
       ]
     },
     {
@@ -484,6 +496,31 @@
             "zh": "自生产之日起12个月",
             "fr": "12 mois à compter de la fabrication"
           }
+        },
+        {
+          "label": {
+            "en": "500 g",
+            "fr": "500 g",
+            "ja": "500g",
+            "ko": "500g",
+            "zh": "500克"
+          },
+          "netWeight": {
+            "en": "500 g",
+            "fr": "500 g",
+            "ja": "500g",
+            "ko": "500g",
+            "zh": "500克"
+          },
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": {
+            "en": "12 months from manufacture",
+            "fr": "12 mois à compter de la fabrication",
+            "ja": "製造日より12か月",
+            "ko": "제조일로부터 12개월",
+            "zh": "自生产之日起12个月"
+          }
         }
       ],
       "description": {
@@ -527,44 +564,277 @@
         "ko": "일본, 호주, 베트남 [확인 필요: 2021년 자료 기준]",
         "zh": "日本、澳大利亚、越南 [확인 필요: 2021년 자료 기준]",
         "fr": "Japon, Australie, Vietnam [확인 필요: 2021년 자료 기준]"
-      }
+      },
+      "images": [
+        "catalog-2026/doljaban.jpg"
+      ]
+    },
+    {
+      "id": "flavored-snack",
+      "priority": 4.5,
+      "status": "active",
+      "images": [
+        "catalog-2026/kimchi-buldak.jpg"
+      ],
+      "name": {
+        "en": "Kimchi & Buldak Flavor Seaweed Snacks",
+        "fr": "Snacks d’algues saveur kimchi et buldak",
+        "ja": "海苔スナック(キムチ味・ブルダック味)",
+        "ko": "김치맛·불닭맛 김",
+        "zh": "海苔零食（泡菜味、火鸡味）"
+      },
+      "tagline": {
+        "en": "Roasted seaweed snacks with a spicy kimchi or buldak (fire chicken) flavour.",
+        "fr": "Snacks d’algues grillées aux saveurs épicées de kimchi ou de buldak (poulet piquant).",
+        "ja": "キムチ味とブルダック(激辛チキン)味の海苔スナックです。",
+        "ko": "매콤한 김치맛과 불닭맛 김 스낵.",
+        "zh": "泡菜味与火鸡味的香辣海苔零食。"
+      },
+      "description": {
+        "en": "Made with seaweed from the islands along Busan and Korea's southern coast, roasted in a high-temperature kiln for a crisp texture.",
+        "fr": "Fabriqués avec des algues des îles au large de Busan et de la côte sud de la Corée, grillées au four à haute température pour une texture croustillante.",
+        "ja": "釜山および韓国南部沿岸の島々で採れた高品質な海苔を使用し、高温の窯で焼き上げてパリッとした食感に仕上げています。",
+        "ko": "부산과 남해안 섬 지역의 김을 고온 가마에서 구워 바삭합니다.",
+        "zh": "选用釜山及韩国南部沿海岛屿的优质紫菜，高温窑烤制，口感酥脆。"
+      },
+      "origin": {
+        "en": "Seaweed from Busan and the southern coast of Korea",
+        "fr": "Algues de Busan et de la côte sud de la Corée",
+        "ja": "釜山・韓国南部沿岸産の海苔",
+        "ko": "부산·남해안 김",
+        "zh": "釜山及韩国南部沿海紫菜"
+      },
+      "uses": {
+        "en": "With rice · In rice balls and triangle kimbap · As a snack · With drinks",
+        "fr": "Avec du riz · En onigiri et kimbap triangle · En snack · À l’apéritif",
+        "ja": "ご飯のおかず・おにぎり、三角巻き寿司・おやつ・おつまみ",
+        "ko": "밥반찬 · 주먹밥·삼각김밥 · 간식 · 안주",
+        "zh": "配米饭 · 饭团、三角寿司卷 · 零食 · 下酒菜"
+      },
+      "variants": [
+        {
+          "label": {
+            "en": "Kimchi flavor",
+            "fr": "Saveur kimchi",
+            "ja": "キムチ味",
+            "ko": "김치맛",
+            "zh": "泡菜味"
+          },
+          "netWeight": {
+            "en": "4 g",
+            "fr": "4 g",
+            "ja": "4g",
+            "ko": "4g",
+            "zh": "4克"
+          },
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "Buldak flavor",
+            "fr": "Saveur buldak",
+            "ja": "ブルダック味",
+            "ko": "불닭맛",
+            "zh": "火鸡味"
+          },
+          "netWeight": {
+            "en": "5 g",
+            "fr": "5 g",
+            "ja": "5g",
+            "ko": "5g",
+            "zh": "5克"
+          },
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        }
+      ]
     },
     {
       "id": "premium-canister",
       "priority": 5,
-      "status": "verify",
+      "status": "active",
       "name": {
-        "en": "Premium Seasoned Seaweed in Canister",
+        "en": "Premium Seasoned Seaweed in a Can",
+        "fr": "Algues assaisonnées premium en boîte",
         "ja": "プレミアム味付け海苔(缶入り)",
         "ko": "프리미엄 캔 조미김",
-        "zh": "罐装调味海苔",
-        "fr": "Algues assaisonnées premium en boîte"
+        "zh": "罐装调味海苔"
       },
       "flavours": [
         "Original",
-        "Kimchi",
         "Wasabi"
       ],
-      "_verify": "seaVege 브랜드가 자사 것인지, 현재 생산 여부"
+      "images": [
+        "catalog-2026/canned.jpg"
+      ],
+      "tagline": {
+        "en": "West Sea traditional laver, lightly seasoned and roasted, packed in a 40 g can. Original and wasabi.",
+        "fr": "Algue traditionnelle de la mer de l’Ouest, légèrement assaisonnée et grillée, en boîte de 40 g. Nature et wasabi.",
+        "ja": "韓国西海の在来海苔を軽く味付けして焼き上げ、40gの缶に詰めました。プレーンとわさび。",
+        "ko": "서해 재래김을 가볍게 조미해 구운 40g 캔 제품. 오리지널, 와사비.",
+        "zh": "韩国西海传统紫菜轻度调味烤制，40克罐装。原味、芥末味。"
+      },
+      "description": {
+        "en": "Made with Jaerae-gim from Korea's West Sea, stored at −23°C to keep its flavour. It is lightly seasoned with sesame oil, roasted at high temperature for a crisp bite, and finished with bamboo salt for a clean taste. The can keeps the sheets crisp after opening.",
+        "fr": "Fabriquées avec du Jaerae-gim de la mer de l’Ouest, conservé à −23 °C. Légèrement assaisonnées à l’huile de sésame, grillées à haute température puis relevées au sel de bambou pour un goût net. La boîte garde les feuilles croustillantes après ouverture.",
+        "ja": "韓国西海の在来海苔を使用し、マイナス23℃で保管して風味を保っています。ごま油で軽く味付けして高温で焼き上げ、竹塩ですっきりと仕上げました。缶入りなので開封後もパリッとした食感が続きます。",
+        "ko": "서해 재래김을 영하 23℃에서 보관해 맛을 지켰습니다. 참기름으로 가볍게 조미해 고온에서 굽고 죽염으로 깔끔하게 마무리했습니다. 캔 포장이라 개봉 후에도 바삭함이 오래갑니다.",
+        "zh": "选用韩国西海传统紫菜，零下23℃储藏保持风味。以芝麻油轻度调味后高温烤制，再以竹盐调出清爽口感。罐装设计，开封后依然酥脆。"
+      },
+      "origin": {
+        "en": "Jaerae-gim from Korea's West Sea, stored at −23°C",
+        "fr": "Jaerae-gim de la mer de l’Ouest (Corée), conservé à −23 °C",
+        "ja": "韓国西海産の在来海苔(−23℃保管)",
+        "ko": "서해 재래김 (영하 23℃ 보관)",
+        "zh": "韩国西海传统紫菜（零下23℃储藏）"
+      },
+      "uses": {
+        "en": "With rice · In rice balls and triangle kimbap · As a snack",
+        "fr": "Avec du riz · En onigiri et kimbap triangle · En snack",
+        "ja": "ご飯のお供・おにぎり、三角キンパ・おやつ",
+        "ko": "밥반찬 · 주먹밥·삼각김밥 · 간식",
+        "zh": "配米饭 · 饭团、三角紫菜包饭 · 零食"
+      },
+      "variants": [
+        {
+          "label": {
+            "en": "Can, original",
+            "fr": "Boîte, nature",
+            "ja": "缶・プレーン",
+            "ko": "캔, 오리지널",
+            "zh": "罐装，原味"
+          },
+          "netWeight": {
+            "en": "40 g",
+            "fr": "40 g",
+            "ja": "40g",
+            "ko": "40g",
+            "zh": "40克"
+          },
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "Can, wasabi",
+            "fr": "Boîte, wasabi",
+            "ja": "缶・わさび",
+            "ko": "캔, 와사비",
+            "zh": "罐装，芥末味"
+          },
+          "netWeight": {
+            "en": "40 g",
+            "fr": "40 g",
+            "ja": "40g",
+            "ko": "40g",
+            "zh": "40克"
+          },
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        }
+      ]
     },
     {
       "id": "cut-wakame",
-      "priority": 6,
-      "status": "verify",
+      "priority": 7,
+      "status": "active",
       "name": {
-        "en": "Dried Cut Wakame",
-        "ja": "乾燥カットわかめ",
-        "ko": "건미역 (컷미역)",
-        "zh": "干裙带菜（切段）",
-        "fr": "Wakame séché coupé"
+        "en": "Dried Wakame",
+        "fr": "Wakame séché",
+        "ja": "乾燥わかめ",
+        "ko": "건미역",
+        "zh": "干裙带菜"
       },
       "tagline": {
-        "en": "Leaf-only wakame from Wando, dried and cut.",
-        "ja": "莞島産わかめの葉の部分だけを乾燥させました。",
-        "ko": "완도산 미역의 잎만 건조.",
-        "zh": "只取莞岛裙带菜的叶片干燥而成。",
-        "fr": "Feuilles de wakame de Wando, séchées et coupées."
-      }
+        "en": "Leaf-only wakame from Wando, dried. For soup and seaweed salad.",
+        "fr": "Feuilles de wakame de Wando, séchées. Pour soupes et salades d’algues.",
+        "ja": "莞島産わかめの葉の部分だけを乾燥させました。スープや海藻サラダに。",
+        "ko": "완도산 미역의 잎만 말렸습니다. 미역국, 해초 샐러드용.",
+        "zh": "只取莞岛裙带菜的叶片干燥而成，适合煮汤和做海藻沙拉。"
+      },
+      "images": [
+        "catalog-2026/wakame.jpg"
+      ],
+      "description": {
+        "en": "Harvested in the clean waters of Wando, Korea. The stems are removed and only the leaves are dried, so the wakame is soft with a rich sea aroma.",
+        "fr": "Récolté dans les eaux claires de Wando, en Corée. Les tiges sont retirées et seules les feuilles sont séchées : un wakame tendre au parfum marin prononcé.",
+        "ja": "韓国の清浄な海域、莞島(ワンド)で採れたわかめです。茎を除いて葉だけを乾燥させているため、やわらかく、磯の香りが豊かです。",
+        "ko": "청정 해역인 완도에서 채취했습니다. 줄기를 떼고 잎만 말려 부드럽고 바다 향이 풍부합니다.",
+        "zh": "采自韩国清洁海域莞岛。去茎只取叶片干燥，口感柔软，海洋香气浓郁。"
+      },
+      "origin": {
+        "en": "Wando, Korea",
+        "fr": "Wando (Corée)",
+        "ja": "韓国・莞島",
+        "ko": "완도",
+        "zh": "韩国莞岛"
+      },
+      "uses": {
+        "en": "Seaweed soup · Miso soup · Seaweed salad",
+        "fr": "Soupe d’algues · Soupe miso · Salade d’algues",
+        "ja": "わかめスープ・味噌汁・海藻サラダ",
+        "ko": "미역국 · 된장국 · 해초 샐러드",
+        "zh": "裙带菜汤 · 味噌汤 · 海藻沙拉"
+      },
+      "variants": [
+        {
+          "label": {
+            "en": "40 g",
+            "fr": "40 g",
+            "ja": "40g",
+            "ko": "40g",
+            "zh": "40克"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "100 g",
+            "fr": "100 g",
+            "ja": "100g",
+            "ko": "100g",
+            "zh": "100克"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "500 g",
+            "fr": "500 g",
+            "ja": "500g",
+            "ko": "500g",
+            "zh": "500克"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "1 kg",
+            "fr": "1 kg",
+            "ja": "1kg",
+            "ko": "1kg",
+            "zh": "1公斤"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        }
+      ]
     },
     {
       "id": "hijiki",
@@ -597,6 +867,70 @@
         "fr": "Autres produits coréens"
       },
       "_verify": "유자차, 삼계탕, 떡볶이, 김말이, 냉면, 다시마. 제조가 아닌 취급 상품으로 보임. 현재 취급 품목만 남길 것"
+    },
+    {
+      "id": "citron-tea",
+      "priority": 8.5,
+      "status": "active",
+      "images": [
+        "catalog-2026/citron-tea.jpg"
+      ],
+      "name": {
+        "en": "Citron Tea (Yuja-cha)",
+        "fr": "Thé au yuzu (Yuja-cha)",
+        "ja": "ゆず茶",
+        "ko": "유자차",
+        "zh": "柚子茶"
+      },
+      "tagline": {
+        "en": "Goheung citron blended with honey. Hot, cold, or as a spread.",
+        "fr": "Yuzu de Goheung mélangé à du miel. Chaud, froid ou à tartiner.",
+        "ja": "高興産のゆずにはちみつを加えました。ホットでもアイスでも、ジャムとしても。",
+        "ko": "고흥 유자에 꿀을 더했습니다. 따뜻하게, 차갑게, 잼으로도.",
+        "zh": "高兴产柚子加入蜂蜜调制，可热饮、冷饮，也可作果酱。"
+      },
+      "description": {
+        "en": "Made with citron from Goheung, Korea, blended with honey for a naturally sweet, refreshing flavour. Mix 2–3 teaspoons with hot or cold water, or use it on toast, yoghurt, desserts and in cocktails.",
+        "fr": "Préparé avec du yuzu de Goheung (Corée) et du miel, pour une saveur naturellement douce et rafraîchissante. Mélangez 2 à 3 cuillères à café à de l’eau chaude ou froide, ou utilisez-le sur des tartines, des yaourts, des desserts et dans des cocktails.",
+        "ja": "韓国・高興(コフン)産の高品質なゆずにはちみつを加え、自然な甘さと爽やかな風味に仕上げました。ティースプーン2〜3杯をお湯または冷水に溶かしてお召し上がりください。トースト、ヨーグルト、デザート、カクテルにもお使いいただけます。",
+        "ko": "고흥산 유자에 꿀을 더해 자연스럽게 달고 상큼합니다. 2~3 티스푼을 따뜻한 물이나 찬물에 타서 드시고, 토스트·요거트·디저트·칵테일에도 쓸 수 있습니다.",
+        "zh": "采用韩国高兴产优质柚子，加入蜂蜜调制，口感自然香甜、清爽。取2–3茶匙加入热水或冷水中搅拌即可，也可搭配吐司、酸奶、甜点或鸡尾酒食用。"
+      },
+      "origin": {
+        "en": "Citron from Goheung, Korea",
+        "fr": "Yuzu de Goheung (Corée)",
+        "ja": "韓国・高興産のゆず",
+        "ko": "고흥산 유자",
+        "zh": "韩国高兴产柚子"
+      },
+      "variants": [
+        {
+          "label": {
+            "en": "500 g",
+            "fr": "500 g",
+            "ja": "500g",
+            "ko": "500g",
+            "zh": "500克"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        },
+        {
+          "label": {
+            "en": "1 kg",
+            "fr": "1 kg",
+            "ja": "1kg",
+            "ko": "1kg",
+            "zh": "1公斤"
+          },
+          "netWeight": null,
+          "perCarton": null,
+          "containerLoad": null,
+          "shelfLife": null
+        }
+      ]
     }
   ]
 }
